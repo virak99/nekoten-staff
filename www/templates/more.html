@@ -50,11 +50,27 @@
     function load(page){    
         
         $('.mr .fa-check').hide();
-        var a = localStorage.getItem(page);        
+        var a = localStorage.getItem(page);
         if (typeof a !== 'undefined' && a !== null){        
-            $(".mr [id='"+a+"']").show();                       
-            $('.mr #'+page).text(a);        
+            if (page == 'language'){
+                var a = localStorage.getItem(page);        
+                $(".mr [id='"+a+"']").show();                           
+                if (a == 'en') a = 'English';
+                else a = 'ភាសាខ្មែរ';
+                $('.mr #'+page).text(a);        
+            } else if (page == 'delivery_to'){               
+                var en = localStorage.getItem('delivery_to').split(',')[0];
+                var kh = localStorage.getItem('delivery_to').split(',')[1];                
+                if (localStorage.getItem('language') == 'en'){                
+                    $(".mr [id='"+en+"']").show();                      
+                    $('.mr #'+page).text(en);            
+                } else {
+                    $(".mr [id='"+en+"']").show();                      
+                    $('.mr #'+page).text(kh);      
+                }
+            }                  
         } else {
+            //alert(localStorage.getItem(page));
             if (page == 'delivery_to') {
                 $(".mr [id='Phnom Penh']").show();                       
                 $('.mr #delivery_to').text('Phnom Penh');

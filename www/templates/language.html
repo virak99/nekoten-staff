@@ -7,13 +7,13 @@
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>
         <ul class="mr">
-            <li onclick="localStorage.setItem('language', 'en'); load('language');" ng-click="myGoBack()">
+            <li onclick="localStorage.setItem('language', 'en'); window.location.href='index.html'">
                 <span>English</span>
-                <span id="English" class="fa fa-check"></span>
+                <span id="en" class="fa fa-check"></span>
             </li>
-            <li onclick="localStorage.setItem('language', 'kh'); load('language');" ng-click="myGoBack()">
+            <li onclick="localStorage.setItem('language', 'kh'); window.location.href='index.html'">
                 <span>ភាសាខ្មែរ</span>
-                <span id="Khmer" class="fa fa-check"></span>
+                <span id="kh" class="fa fa-check"></span>
             </li>            
         </ul>        
     </ion-content>
