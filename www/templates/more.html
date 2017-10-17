@@ -1,0 +1,69 @@
+<div class"app-header">
+    <div class="header-title">More</div>
+</div>
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>        
+        <ul class="mr">
+            <li onclick="load('delivery_to'); window.location.href='#tab/delivery_to/';">            
+                <span>Deliver to</span>
+                <span class="fa fa-angle-right"></span>
+                <span class="a" id="delivery_to"></span>
+            </li>
+            <li onclick="load('language'); window.location.href='#tab/language/';">
+                <span>Language</span>
+                <span class="fa fa-angle-right"></span>
+                <span class="a" id="language">English</span>
+            </li>
+        </ul>
+        <div class="hr"></div>
+        <ul class="mr">
+            <li onclick="window.location.href='#tab/help_center/';">
+                <span>Help Center</span>
+                <span class="fa fa-angle-right"></span>
+            </li>
+        </ul>
+        <div class="hr"></div>
+        <ul class="mr">
+            <li onclick="window.location.href='#tab/feedback/';">
+                <span>Feedback</span>
+                <span class="fa fa-angle-right"></span>
+            </li>
+            <li onclick="window.location.href='#tab/contact_us/';">
+                <span>Contact Us</span>
+                <span class="fa fa-angle-right"></span>
+            </li>
+            <li onclick="window.location.href='#tab/about_us/';">
+                <span>About Us</span>
+                <span class="fa fa-angle-right"></span>
+            </li>
+            
+        </ul>
+        <div class="footer">
+            <div class="a"><img src="img/nekoten.png"></div>
+            <div class="b">Version 1.0</div>
+            <div class="c">2017 Nekoten.com.<br>All rights reserved</div>
+        </div>
+  </ion-content>
+</ion-view>
+<script>
+    function load(page){    
+        
+        $('.mr .fa-check').hide();
+        var a = localStorage.getItem(page);        
+        if (typeof a !== 'undefined' && a !== null){        
+            $(".mr [id='"+a+"']").show();                       
+            $('.mr #'+page).text(a);        
+        } else {
+            if (page == 'delivery_to') {
+                $(".mr [id='Phnom Penh']").show();                       
+                $('.mr #delivery_to').text('Phnom Penh');
+            } else {
+                $(".mr [id='English']").show();                       
+                $('.mr #language').text('English');
+            }
+        }  
+    }
+
+    load('delivery_to');
+    load('language');
+</script>

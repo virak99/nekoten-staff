@@ -1,0 +1,28 @@
+<div class"app-header">
+    <form class="search-bar" onsubmit="submitSearchForm('search-search');">
+        <i class="icon ion-search"></i>
+        <input onkeyup="searchKeyword('search');" id="search-search" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
+        <span onclick="cancelClick()" class="cancel">Cancel</span>
+    </form>
+    <ul class="search-form">
+        
+    </ul>
+</div>
+<ion-view hide-nav-bar="true" style="margin-top:65px">
+    <ion-content>
+        <div class="sh">
+            <div class="a">SEARCH HISTORY</div>
+            <ul class="b">
+                
+            </ul>
+        </div>
+    </ion-content>
+</ion-view>
+<script>
+    localStorage.setItem('search_history', ',Phone,Watch,Clothes,Anker,Shiseido');
+    var a = localStorage.getItem('search_history').split(',');
+    for (var i = 1; i < a.length; i++){        
+        $('.sh .b').append('<li onclick="searchProduct(\''+a[i]+'\'); window.location.href=\'#tab/search_res\'")>'+a[i]+'</li>');
+    }
+</script>
+

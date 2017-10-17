@@ -1,0 +1,23 @@
+<div class"app-header">
+    <div class="header-title">Language</div>
+    <div class="back" ng-click="myGoBack()">
+        <span class="ion-ios-arrow-left"></span>
+    </div>
+</div>
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>
+        <ul class="mr">
+            <li onclick="localStorage.setItem('language', 'English'); load('language');" ng-click="myGoBack()">
+                <span>English</span>
+                <span id="English" class="fa fa-check"></span>
+            </li>
+            <li onclick="localStorage.setItem('language', 'Khmer'); load('language');" ng-click="myGoBack()">
+                <span>Khmer</span>
+                <span id="Khmer" class="fa fa-check"></span>
+            </li>            
+        </ul>        
+    </ion-content>
+</ion-view>
+<script>    
+    load('language');
+</script>

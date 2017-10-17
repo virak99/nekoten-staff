@@ -1,0 +1,95 @@
+<div class"app-header">
+    <form class="search-bar" onsubmit="submitSearchForm('search-home');">
+        <i class="icon ion-search"></i>
+        <input id="search-home" onkeyup="searchKeyword('home')" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
+    
+        <span onclick="cancelClick()" class="cancel">Cancel</span>
+    </form>
+    <ul class="search-form">
+        
+    </ul>
+</div>
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>
+        
+        
+        <div class="home">
+            <div class="home-slider owl-carousel owl-theme">
+                <img src="img/slide-1.jpg">
+                <img src="img/slide-2.jpg">
+                <img src="img/slide-3.jpg">
+            </div>
+            
+            
+            <ul class="cate owl-carousel owl-theme" id="cate">
+            
+            </ul>
+            <script> 
+            $('.home-slider').owlCarousel({
+                loop:true,
+                margin:10,
+                autoplay:true,
+                autoplayTimeout:5000,
+                autoplayHoverPause:true,
+                responsive:{
+                    0:{
+                        items:1
+                    }
+                }
+            });
+            
+            </script>
+            <div class="hr"></div>
+            <div class="wrap">
+                <div class="new-arrival">
+                    <h3>New Arrival</h3>
+                </div>                
+                <ul id="new_arrival">
+                    
+                <ul>
+                
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script>
+    
+$(function() {
+    //getLocation();
+    
+    var size = $(window).width();
+    var a_wh = (size-30)/2;
+    
+    $.post('http://www.nekoten.khmerqq.com/app/new_arrival.php',{size:size},function(data){
+        var arr = JSON.parse(data);
+        for (var i = 0; i < arr.length; i++){
+            var ad = arr[i];
+            var ad_id = ad['ad_id'];
+            $('#new_arrival').append('<ion-item onclick="loadProduct(\''+ad_id+'\');" class="ad-item"><div class="b" style="width:'+a_wh+'px;height:'+a_wh+'px"><img style="width:'+ad['width']+'; height:'+ad['height']+'; margin-'+ad['margin']+':'+ad['margin-px']+'px" src="http://www.nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1.jpg"></div><div class="a"><span>'+ad['price']+'</span><span>0 order</span></div></ion-item>');
+        }        
+    });
+    
+    
+    
+    $.post('http://www.nekoten.khmerqq.com/app/category.php',{},function(data){
+        var cate = JSON.parse(data);
+        for (var i = 0; i < cate.length; i++){
+            var c = cate[i];            
+            $('#cate').append('<li><div><span class="fa '+c['fa']+'"></span></div><div>'+c['name_en']+'</div></li>');
+            
+        }
+        $('#cate').owlCarousel({
+                margin:10,
+                responsive:{
+                    0:{
+                        items:5
+                    }
+                }
+            });
+    });
+
+                    
+                
+});
+</script>

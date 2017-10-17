@@ -1,0 +1,109 @@
+<ion-view hide-nav-bar="true">
+    <ion-content>
+        <div class="back" ng-click="myGoBack()" onclick="$('#ad_image').html('');$('#product_body').hide()">
+            <span class="ion-ios-arrow-left"></span>
+        </div>
+        
+        <div id="ad_images">
+            <div class="home-slider owl-carousel owl-theme" id="ad_image">
+                
+            </div>
+            <div class="wishlist-btn">
+                <span class="fa fa-heart"></span>    
+            </div>
+        </div>
+        
+        <div id="product_body" style="display:none">
+        
+        
+            <div class="w" id="title"></div>
+            <div class="pp">
+                
+                <span id="price"></span>
+                <span id="normal_price"></span>
+                <span id="discount"></span>
+                <span id="quantity"></span>
+            </div>
+            <div class="ii">
+                <div class="a">
+                    <div class="b" id="rate"></div>
+                    <div class="c" id="review"></div>
+                </div>
+                <div class="a">
+                    <div class="b" id="n_order"></div>
+                    <div class="c">Order</div>
+                </div>
+                <div class="a">
+                    <div class="b" id="view"></div>
+                    <div class="c">View</div>
+                </div>
+            </div>
+            <div class="hr"></div>
+            <div class="dt">
+                <div class="c">
+                    <div class="a">Deliver to</div>
+                    <div class="b">
+                        <select id="location">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="c">
+                    <div class="a">Delivery fee</div>
+                    <div id="delivery_fee">Free</div>
+                </div>
+                <div class="c">
+                    <div class="a">Recieve product</div>
+                    <div id="delivery_time"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="at">
+            <div class="a">
+                <div class="b">Quantity</div>
+                <div class="c">
+                    <span class="d fa fa-minus" onclick="qtyMinus()"></span>
+                    <input class="e" id="qty" type="text" value="1">
+                    <span class="f fa fa-plus" onclick="qtyPlus()"></span>
+                </div>
+            </div>
+        </div>
+        <div class="bt">
+            <span class="h">Ask Question</span>
+            <span class="i">Add to Cart</span>
+        </div>
+        <div class="hr"></div>
+        <div class="pd">
+            <div class="a">Product Description</div>
+            <div class="b" id="desc"></div>
+        </div>
+        <div class="hr"></div>
+        <div class="qs">
+            <div class="a">Question (<span id="n_question">0</span>)</div>
+            <div id="question">
+            
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="ra">
+            <div class="a">Related Products</div>
+            <div class="b">
+            
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+<script>
+    
+function qtyPlus(){
+    if ($('#qty').val() < 10) {
+        $('#qty').val(parseInt($('#qty').val(), 10)+1);
+    }
+}
+function qtyMinus(){
+    if ($('#qty').val() > 1) {
+        $('#qty').val(parseInt($('#qty').val(), 10)-1);
+    }
+}
+</script>

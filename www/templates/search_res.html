@@ -1,0 +1,121 @@
+<div class"app-header">
+    <form class="search-bar search-res" onsubmit="submitSearchForm('search-res');">
+        <div class="back" ng-click="myGoBack()" onclick="$('#search_res_item').html('')">
+            <span class="ion-ios-arrow-left"></span>
+        </div>
+        <i class="icon ion-search"></i>
+        <input onkeyup="searchKeyword('search-res')" id="search-search-res" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
+    
+        <span onclick="cancelClick()" class="cancel">Cancel</span>
+    </form>
+    <ul class="search-form">
+        
+    </ul>
+</div>
+<ion-view hide-nav-bar="true" style="margin-top:65px">
+    <ion-content>
+        <div class="sr">
+            <div class="a">
+                <div class="b" onclick="toggleSortBy()">
+                    <span id="sort_by">Best Match</span>
+                    <span id="arrow" class="ion-arrow-down-b"></span>
+                </div>
+                <div class="c">
+                    <span id="view-mode" class="fa fa-th-large" onclick="changeViewMode()"></span>
+                </div>
+            </div>
+            <ul class="d" style="display:none">
+                <li id="best_match" onclick="sortBy('best_match')">
+                    <span class="e">Best Match</span>
+                    <span class="fa fa-check"></span>    
+                </li>
+                <li id="lower_price" onclick="sortBy('lower_price')">
+                    <span class="e">Price (Low to High)</span>
+                    <span class="fa fa-check" style="display:none"></span>    
+                </li>
+                <li id="higher_price" onclick="sortBy('higher_price')">
+                    <span class="e">Price (High to Low)</span>
+                    <span class="fa fa-check" style="display:none"></span>    
+                </li>
+                <li id="num_rating" onclick="sortBy('num_rating')">
+                    <span class="e">Number of Rating</span>
+                    <span class="fa fa-check" style="display:none"></span>    
+                </li>
+                <li id="date_added" onclick="sortBy('date_added')">
+                    <span class="e">Date Added (New to Old)</span>
+                    <span class="fa fa-check" style="display:none"></span>    
+                </li>
+            </ul>
+        </div>
+        <div class="wrap">
+            <ul id="search_res_item">
+            <script>
+                /*
+                <li class="p-list">
+                    <div class="a">
+                        <img src="img/1.jpg" style="width:100%">
+                    </div>
+                    <div class="b">
+                        <div class="c">KISSCASE For iPhone 7 Phone Case For iphone 5 5s 6 6s Case 3 in 1 360 Full Protective PC Phone Cases For iPhone 6 6s Plus 7 Plus</div>
+                        <div class="e">
+                             <div class="d">$3.30</div>
+                            <div class="g">5 Orders</div>
+                        </div>
+                    </div>
+                </li>*/
+            </script>
+                
+            <ul>
+        </div>
+    </ion-content>
+</ion-view>
+<script>
+    
+    function changeViewMode(){
+        var size_l = '120';
+        var size_g = ($(window).width()-30)/2;
+    
+        if ($('#view-mode').hasClass('fa-th-large')){
+            $('#view-mode').removeClass('fa-th-large');
+            $('#view-mode').addClass('fa-list');
+            $('#search_res_item li').addClass('p-list');
+            $('#search_res_item li').removeClass('p-grid');
+            $('#search_res_item li').each(function(){
+               $(this).children('.a').css('width', size_l);
+               $(this).children('.a').css('height', size_l);
+               $(this).children('.a img').css('margin-'+$(this).attr('margin'), $(this).attr('px_l'));
+            });
+        } else {
+            $('#view-mode').addClass('fa-th-large');
+            $('#view-mode').removeClass('fa-list');
+            $('#search_res_item li').removeClass('p-list');
+            $('#search_res_item li').addClass('p-grid');
+            $('#search_res_item li').each(function(){
+               $(this).children('.a').css('width', size_g);
+               $(this).children('.a').css('height', size_g);
+               $(this).children('.a img').css('margin-'+$(this).attr('margin'), $(this).attr('px_g'));
+            });
+        }
+    }
+
+    function toggleSortBy(){
+        if ($('.sr #arrow').hasClass('ion-arrow-down-b')){
+            $('.sr .d').show(); 
+            $('.sr #arrow').removeClass('ion-arrow-down-b'); 
+            $('.sr #arrow').addClass('ion-arrow-up-b');
+        } else {
+            $('.sr .d').hide(); 
+            $('.sr #arrow').removeClass('ion-arrow-up-b'); 
+            $('.sr #arrow').addClass('ion-arrow-down-b');
+        }
+    }
+    function sortBy(opt){
+        $('#sort_by').text($('.sr #'+opt+' .e').text());
+        $('.sr .fa-check').hide();
+        $('.sr #'+opt+' .fa-check').show();
+        toggleSortBy();
+    }
+    
+    
+    
+</script>
