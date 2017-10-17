@@ -97,6 +97,8 @@ function search(keyword){
     window.location.href = '#tab/search_res';
 }
 
+
+
 function searchKeyword(tab){
     var q = $('#search-'+tab).val();
     //alert(q);
