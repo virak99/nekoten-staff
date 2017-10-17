@@ -18,10 +18,20 @@ angular.module('starter.controllers', [])
   
 })
 
-
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ScrollCtrl', function($scope, $ionicScrollDelegate) {
+  $scope.data = {
+    title : ""
+  };
+  $scope.onComplete = function() {    
+    var scrollTop = $ionicScrollDelegate.getScrollPosition().top;        
+    if (($(window).height() - scrollTop) < 300){
+        loadMore();
+    }    
+    
+  };
+  
 })
+
 
 .controller('NavCtrl', function($scope, $location, $ionicHistory, $state){
         $scope.myGoBack = function() {

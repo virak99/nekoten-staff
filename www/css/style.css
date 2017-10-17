@@ -49,8 +49,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     float: right;
 }
 .header-view{
-     margin-top:65px;
+     margin-top:65px;     
 }
+
 .header-title{
     text-align: center;
     font-size: 18px;
@@ -567,6 +568,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     font-size: 16px;
     color: white;
     background-color: #ff3366;    
+}
+ion-nav-view{
+    margin-bottom: 100px;
 }
 .lg {
     padding: 20px;

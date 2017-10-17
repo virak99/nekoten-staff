@@ -3,6 +3,7 @@ function isLogined(){
     return (typeof a !== 'undefined' && a !== null);
 }
 
+
 function loadProduct(ad_id){  
 
     $.post('http://www.nekoten.khmerqq.com/app/product.php',{ad_id:ad_id},function(data){

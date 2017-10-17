@@ -47,7 +47,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/home',
     views: {
       'home': {
-        templateUrl: 'templates/home.html'
+        templateUrl: 'templates/home.html',
+        controller: 'ScrollCtrl'
       }
     }
   })
@@ -57,8 +58,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/cart',
       views: {
         'cart': {
-          templateUrl: 'templates/cart.html',
-          controller: 'ChatsCtrl'
+          templateUrl: 'templates/cart.html'          
         }
       }
     })
