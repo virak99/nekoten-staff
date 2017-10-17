@@ -71,9 +71,9 @@
         var size_l = '120';
         var size_g = ($(window).width()-30)/2;
     
-        if ($('#view-mode').hasClass('fa-th-large')){
-            $('#view-mode').removeClass('fa-th-large');
-            $('#view-mode').addClass('fa-list');
+        if ($('#view-mode').hasClass('fa-list')){
+            $('#view-mode').addClass('fa-th-large');
+            $('#view-mode').removeClass('fa-list');
             $('#search_res_item li').addClass('p-list');
             $('#search_res_item li').removeClass('p-grid');
             $('#search_res_item li').each(function(){
@@ -82,8 +82,8 @@
                $(this).children('.a img').css('margin-'+$(this).attr('margin'), $(this).attr('px_l'));
             });
         } else {
-            $('#view-mode').addClass('fa-th-large');
-            $('#view-mode').removeClass('fa-list');
+            $('#view-mode').removeClass('fa-th-large');
+            $('#view-mode').addClass('fa-list');            
             $('#search_res_item li').removeClass('p-list');
             $('#search_res_item li').addClass('p-grid');
             $('#search_res_item li').each(function(){

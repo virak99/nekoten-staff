@@ -51,13 +51,7 @@
         $(this).hide();
         $(this).siblings('input').val('');
     });
-    function checkClose(item){
-        if ($('#register_form #'+item).val() != ''){
-            $('#close-'+item).show();
-        } else {
-            $('#close-'+item).hide();
-        }  
-    }
+    
     function submitRegister(){
         var full_name = $('#register_form #full_name').val();
         var phone = $('#register_form #phone_number').val();

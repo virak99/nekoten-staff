@@ -108,7 +108,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-  .state('tab.account_settings', {
+    .state('tab.account_settings', {
     url: '/account_settings',
     views: {
       'account': {

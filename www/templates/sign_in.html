@@ -37,12 +37,12 @@
 </ion-view>
 <script>    
     la();
-    $('#sign_in input').on('keyup', function(){
+    $('#sign_in_form input').on('keyup', function(){
         if ($(this).val() != '') {
             $(this).siblings('.close').show();
         }
     });
-    $('#sign_in .close').on('click', function(){
+    $('#sign_in_form .close').on('click', function(){
         $(this).hide();
         $(this).siblings('input').val('');
     });
