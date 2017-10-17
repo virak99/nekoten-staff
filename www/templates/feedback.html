@@ -1,5 +1,5 @@
 <div class"app-header">
-    <div class="header-title">Feedback</div>
+    <div class="header-title" k="មតិយោបល់">Feedback</div>
     <div class="back" ng-click="myGoBack()">
         <span class="ion-ios-arrow-left"></span>
     </div>
@@ -7,13 +7,14 @@
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>
         <div class="fb">
-            <center>Tell us what we could do better</center>
+            <center k="សូមអរគុណសំរាប់មតិកែលម្អ">Tell us what we could do better</center>
             <textarea id="message"></textarea>
-            <div class="btn" onclick="submitFeedback()">Submit</div>
+            <div class="btn" onclick="submitFeedback()" k="បញ្ជូន">Submit</div>
         </div>
     </ion-content>
 </ion-view>
 <script>
+    la():
     function submitFeedback() {
         var message = $('#message').val();
         $.post('http://www.nekoten.khmerqq.com/app/feedback.php', {message:message}, function(data){

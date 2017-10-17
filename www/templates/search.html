@@ -1,8 +1,8 @@
 <div class"app-header">
     <form class="search-bar" onsubmit="submitSearchForm('search-search');">
         <i class="icon ion-search"></i>
-        <input onkeyup="searchKeyword('search');" id="search-search" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
-        <span onclick="cancelClick()" class="cancel">Cancel</span>
+        <input onkeyup="searchKeyword('search');" k="ខ្ញុំកំពុងស្វែងរក ..." id="search-search" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
+        <span onclick="cancelClick()" k="បិទ" class="cancel">Cancel</span>
     </form>
     <ul class="search-form">
         
@@ -11,7 +11,7 @@
 <ion-view hide-nav-bar="true" style="margin-top:65px">
     <ion-content>
         <div class="sh">
-            <div class="a">SEARCH HISTORY</div>
+            <div class="a" k="បានស្វែងរក">SEARCH HISTORY</div>
             <ul class="b">
                 
             </ul>
@@ -19,6 +19,7 @@
     </ion-content>
 </ion-view>
 <script>
+    la();
     localStorage.setItem('search_history', ',Phone,Watch,Clothes,Anker,Shiseido');
     var a = localStorage.getItem('search_history').split(',');
     for (var i = 1; i < a.length; i++){        

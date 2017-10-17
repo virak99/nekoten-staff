@@ -1,16 +1,16 @@
 <div class"app-header">
-    <div class="header-title">More</div>
+    <div class="header-title" k="ផ្សេងទៀត">More</div>
 </div>
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>        
         <ul class="mr">
             <li onclick="load('delivery_to'); window.location.href='#tab/delivery_to/';">            
-                <span>Deliver to</span>
+                <span k="ដឹកទៅកាន់">Deliver to</span>
                 <span class="fa fa-angle-right"></span>
                 <span class="a" id="delivery_to"></span>
             </li>
             <li onclick="load('language'); window.location.href='#tab/language/';">
-                <span>Language</span>
+                <span k="ភាសា">Language</span>
                 <span class="fa fa-angle-right"></span>
                 <span class="a" id="language">English</span>
             </li>
@@ -18,22 +18,22 @@
         <div class="hr"></div>
         <ul class="mr">
             <li onclick="window.location.href='#tab/help_center/';">
-                <span>Help Center</span>
+                <span k="ជំនួយ">Help Center</span>
                 <span class="fa fa-angle-right"></span>
             </li>
         </ul>
         <div class="hr"></div>
         <ul class="mr">
             <li onclick="window.location.href='#tab/feedback/';">
-                <span>Feedback</span>
+                <span k="មតិយោបល់">Feedback</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li onclick="window.location.href='#tab/contact_us/';">
-                <span>Contact Us</span>
+                <span k="ទាក់ទងយើងខ្ញុំ">Contact Us</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li onclick="window.location.href='#tab/about_us/';">
-                <span>About Us</span>
+                <span k="អំពីយើងខ្ញុំ">About Us</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             
@@ -46,6 +46,7 @@
   </ion-content>
 </ion-view>
 <script>
+    la();
     function load(page){    
         
         $('.mr .fa-check').hide();

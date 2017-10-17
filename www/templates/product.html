@@ -31,17 +31,17 @@
                 </div>
                 <div class="a">
                     <div class="b" id="n_order"></div>
-                    <div class="c">Order</div>
+                    <div class="c" k="កម្មង់">Order</div>
                 </div>
                 <div class="a">
                     <div class="b" id="view"></div>
-                    <div class="c">View</div>
+                    <div class="c" k="មើល">View</div>
                 </div>
             </div>
             <div class="hr"></div>
             <div class="dt">
                 <div class="c">
-                    <div class="a">Deliver to</div>
+                    <div class="a" k="ដឹកទោកាន់">Deliver to</div>
                     <div class="b">
                         <select id="location">
                             
@@ -49,11 +49,11 @@
                     </div>
                 </div>
                 <div class="c">
-                    <div class="a">Delivery fee</div>
+                    <div class="a" k="ថ្លៃដឹកជញ្ជូន">Delivery fee</div>
                     <div id="delivery_fee">Free</div>
                 </div>
                 <div class="c">
-                    <div class="a">Recieve product</div>
+                    <div class="a" k="ទទួលទំនិញ">Recieve product</div>
                     <div id="delivery_time"></div>
                 </div>
             </div>
@@ -61,7 +61,7 @@
         <div class="hr"></div>
         <div class="at">
             <div class="a">
-                <div class="b">Quantity</div>
+                <div class="b" k="បរិមាណ">Quantity</div>
                 <div class="c">
                     <span class="d fa fa-minus" onclick="qtyMinus()"></span>
                     <input class="e" id="qty" type="text" value="1">
@@ -70,24 +70,24 @@
             </div>
         </div>
         <div class="bt">
-            <span class="h">Ask Question</span>
-            <span class="i">Add to Cart</span>
+            <span class="h" k="សួរសំនួរ">Ask Question</span>
+            <span class="i" k="ដាក់ចូលកន្ត្រក">Add to Cart</span>
         </div>
         <div class="hr"></div>
         <div class="pd">
-            <div class="a">Product Description</div>
+            <div class="a" k="ការពិពណ៌នាអំពីផលិតផល">Product Description</div>
             <div class="b" id="desc"></div>
         </div>
         <div class="hr"></div>
         <div class="qs">
-            <div class="a">Question (<span id="n_question">0</span>)</div>
+            <div class="a" k="សំនួរ និង ចម្លើយ">Question (<span id="n_question">0</span>)</div>
             <div id="question">
             
             </div>
         </div>
         <div class="hr"></div>
         <div class="ra">
-            <div class="a">Related Products</div>
+            <div class="a" k="ផលិតផលស្រដៀងគ្នា">Related Products</div>
             <div class="b">
             
             </div>
@@ -95,7 +95,7 @@
     </ion-content>
 </ion-view>
 <script>
-    
+    la();
 function qtyPlus(){
     if ($('#qty').val() < 10) {
         $('#qty').val(parseInt($('#qty').val(), 10)+1);

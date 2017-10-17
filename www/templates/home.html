@@ -3,7 +3,7 @@
         <i class="icon ion-search"></i>
         <input id="search-home" onkeyup="searchKeyword('home')" onclick="searchClick()" placeholder="I'm shopping for ..." class="search">
     
-        <span onclick="cancelClick()" class="cancel">Cancel</span>
+        <span onclick="cancelClick()" class="cancel" k="បិទ">Cancel</span>
     </form>
     <ul class="search-form">
         
@@ -41,9 +41,8 @@
             </script>
             <div class="hr"></div>
             <div class="wrap">
-                66666666666666666666
                 <div class="new-arrival">
-                    <h3>New Arrival</h3>
+                    <h3 k="ទំនិញមកដល់ថ្មី">New Arrival</h3>
                 </div>                
                 <ul id="new_arrival">
                     
@@ -55,6 +54,7 @@
 </ion-view>
 
 <script>
+    la();
     
 $(function() {
     //getLocation();
@@ -67,7 +67,7 @@ $(function() {
         for (var i = 0; i < arr.length; i++){
             var ad = arr[i];
             var ad_id = ad['ad_id'];
-            $('#new_arrival').append('<ion-item onclick="loadProduct(\''+ad_id+'\');" class="ad-item"><div class="b" style="width:'+a_wh+'px;height:'+a_wh+'px"><img style="width:'+ad['width']+'; height:'+ad['height']+'; margin-'+ad['margin']+':'+ad['margin-px']+'px" src="http://www.nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1.jpg"></div><div class="a"><span>'+ad['price']+'</span><span>0 order</span></div></ion-item>');
+            $('#new_arrival').append('<ion-item onclick="loadProduct(\''+ad_id+'\');" class="ad-item"><div class="b" style="width:'+a_wh+'px;height:'+a_wh+'px"><img style="width:'+ad['width']+'; height:'+ad['height']+'; margin-'+ad['margin']+':'+ad['margin-px']+'px" src="http://www.nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1.jpg"></div><div class="a"><span>'+ad['price']+'</span><span>0 <span k="កម្មង់">order</span></span></div></ion-item>');
         }        
     });
     
@@ -77,7 +77,7 @@ $(function() {
         var cate = JSON.parse(data);
         for (var i = 0; i < cate.length; i++){
             var c = cate[i];            
-            $('#cate').append('<li><div><span class="fa '+c['fa']+'"></span></div><div>'+c['name_en']+'</div></li>');
+            $('#cate').append('<li><div><span class="fa '+c['fa']+'"></span></div><div k="'+c['name_kh']+'">'+c['name_en']+'</div></li>');
             
         }
         $('#cate').owlCarousel({
@@ -88,6 +88,7 @@ $(function() {
                     }
                 }
             });
+            la();
     });
 
                     

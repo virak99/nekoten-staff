@@ -1,5 +1,5 @@
 <div class"app-header">
-    <div class="header-title">Account</div>    
+    <div class="header-title" la="គណនីរបស់ខ្ញុំ">Account</div>    
 </div>
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>  
@@ -21,42 +21,43 @@
         <ul class="mr">
             <li>
             <span class="b ion-ios-list-outline"></span>
-                <span>My Order</span>
+                <span k="ការកម្មង់របស់ខ្ញុំ">My Order</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <span class="b ion-ios-heart-outline"></span>
-                <span>My Wishlist</span>
+                <span k="ទំនិញចង់បាន">My Wishlist</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <span class="b ion-ios-location-outline"></span>
-                <span>My Shipping Address</span>
+                <span k="អាស័យដ្ឋានដឹកជញ្ជូន">My Shipping Address</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <span class="b ion-ios-chatbubble-outline"></span>
-                <span>My Review</span>
+                <span k="រង្វាយតម្លៃ">My Review</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <span class="b ion-ios-help-outline"></span>
-                <span>My Question</span>
+                <span k="សំនួរ ចម្លើយ">My Question</span>
                 <span class="fa fa-angle-right"></span>
             </li>
             <li>
                 <span class="b ion-ios-eye-outline"></span>
-                <span>Recently viewed Products</span>
+                <span k="ទំនិញដែលទើបចូលមើល">Recently viewed Products</span>
                 <span class="fa fa-angle-right"></span>
             </li>
         </ul>
         
-        <center style="margin-top:20%"><a href="#/tab/register" id="register_click">Click me!</a>
-<a href="#/tab/sign_in" id="sign_in_click">Click me!</a></center>
+        <center style="margin-top:20%"><a href="#/tab/register" id="register_click">Register</a>
+<a href="#/tab/sign_in" id="sign_in_click">Sign In</a></center>
   </ion-content>
 </ion-view>
 
 <script>
+    la();
     setTimeout(function() {
         if (!isLogined()) {
             $('#register_click').click();        

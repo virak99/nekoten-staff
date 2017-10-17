@@ -160,6 +160,14 @@ function searchProduct(keyword) {
     }, 100);
 }
 
+function la(){
+    if (localStorage.getItem('language') == 'kh'){
+        $('[k]').each(function(){
+            $(this).text($(this).attr('k'));
+            $(this).attr('placeholder', $(this).attr('k'));
+        });
+    }
+}
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position){

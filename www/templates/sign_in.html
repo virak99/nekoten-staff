@@ -1,5 +1,5 @@
 <div class"app-header">
-    <div class="header-title">Sign In</div>
+    <div class="header-title" k="ចូលគណនី">Sign In</div>
     <div class="back" ng-click="myGoBack()">
         <span class="close ion-ios-close-empty"></span>
     </div>
@@ -8,34 +8,35 @@
     <ion-content>  
         <div class="lg">
             <div class="a">
-                <button><span class="fa fa-facebook-official"></span> <span>Sign in with Facebook</span></button>                
+                <button><span class="fa fa-facebook-official"></span> <span k="ចូលគណនីតាម Facebook">Sign in with Facebook</span></button>                
             </div>
             <div class="b">_______________OR_______________</div>
             <div class="c">
                 <form id="sign_in_form">
                     <div class="d">
                         <div class="e"><span class="ion-ios-telephone"></span></div>
-                        <div class="f"><input id="phone_number" placeholder="Phone Number" type="number">
+                        <div class="f"><input id="phone_number" k="ទូរស័ព្ទ" placeholder="Phone Number" type="number">
                             <span style="display:none" class="close ion-ios-close-outline"></span>
                         </div>
                     </div>
                     <div class="d">
                         <div class="e"><span class="ion-ios-locked"></span></div>
-                        <div class="f"><input id="password" placeholder="Password" type="password">
+                        <div class="f"><input id="password" k="លេខសំងាត់" placeholder="Password" type="password">
                             <span style="display:none" class="close ion-ios-close-outline"></span>
                         </div>
                     </div>
                     <div class="g">
-                        <button type="submit">Sign in with Phone Number</span></button>                
+                        <button type="submit" k="ចូលគណនីតាមលេខទូរស័ព្ទ">Sign in with Phone Number</span></button>                
                     </div>
                 </form>
             </div>
-            <div class="h">Forget Password?</div>
-            <div class="i">Don't have Account yet? <a href="#tab/register">Register now</a></div>
+            <div class="h" k="ភ្លេចលេខទូរស័ព្ទ">Forget Password?</div>
+            <div class="i" k="គ្មានគណនីនៅឡើយ?">Don't have Account yet? <a href="#tab/register" k="ចុះឈ្មោះឥឡូវនេះ">Register now</a></div>
         </div>
   </ion-content>
 </ion-view>
 <script>    
+    la();
     $('#sign_in input').on('keyup', function(){
         if ($(this).val() != '') {
             $(this).siblings('.close').show();
