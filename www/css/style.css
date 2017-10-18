@@ -181,13 +181,54 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     float: right;
     font-size: 20px;
 }
+.cart-footer {
+    bottom: -50px;
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #eee;
+}
+.cart-footer .aa{
+    font-size: 12px;
+    color: #aaa;
+}
+.cart-footer .a {
+    width: 50%;
+    float: left;
+    padding-left: 20px;
+    margin-top: -5px;
+}
+.cart-footer .b {
+    float: left;
+    margin-right: 10px;
+}
+.cart-footer .ab{
+    font-size: 20px;
+    color: #ff3366;
+    font-weight: bold;
+}
+
+.cart-footer .d{
+    width: 50%;
+    float: right;
+    padding: 10px;
+    background: #ff3366;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+#cate .i .delete {
+    padding: 20px;
+}
 #cart .j {
     padding: 0 5px;
     background: #eee;
     border-radius: 50%;
 }
+#cart .jj {
+    padding: 10px;
+}
 #cart .h #qty {
-    margin: 0 5px;
     color: #387ef5;
 }
 #cart .cc{

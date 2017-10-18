@@ -45,6 +45,8 @@ angular.module('starter.controllers', [])
         $scope.go = function ( path ) {
 	       $location.path( path );
         };
+        
+        
 })
 
 .controller('AccountCtrl', function($scope) {
@@ -53,3 +55,4 @@ angular.module('starter.controllers', [])
   };
   
 });
+

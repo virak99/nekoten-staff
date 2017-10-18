@@ -28,7 +28,7 @@ function loadProduct(ad_id){
             }
         });
         
-        
+        $('#ad_id').val(ad_id);
         $('.pp #price').html(ad['price']);
         $('.pp #normal_price').html(ad['normal_price']);
         $('.pp #discount').html('-'+ad['discount']+'%');

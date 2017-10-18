@@ -15,7 +15,7 @@
         
         <div id="product_body" style="display:none">
         
-        
+            <input id="ad_id" type="text" style="display:none">
             <div class="w" id="title"></div>
             <div class="pp">
                 
@@ -71,7 +71,7 @@
         </div>
         <div class="bt">
             <span class="h" k="សួរសំនួរ">Ask Question</span>
-            <span class="i" k="ដាក់ចូលកន្ត្រក">Add to Cart</span>
+            <span class="i" k="ដាក់ចូលកន្ត្រក" onclick="addToCart()">Add to Cart</span>
         </div>
         <div class="hr"></div>
         <div class="pd">
@@ -96,14 +96,42 @@
 </ion-view>
 <script>
     la();
-function qtyPlus(){
-    if ($('#qty').val() < 10) {
-        $('#qty').val(parseInt($('#qty').val(), 10)+1);
+    
+    function addToCart(){
+        var ad_id = $('#product_body #ad_id').val();
+        var qty = parseInt($('.at #qty').val(), 10);
+        var opt = 0;
+        var a = localStorage.getItem('shopping_cart');
+        if (a == ''){
+            var b = ','+ad_id+':'+opt+':'+qty;
+        } else {
+            var b = '';
+            var added = 0;
+            var c = a.split(',');
+            for (var i = 1; i < c.length; i++){
+                if (c[i].split(':')[0] == ad_id && c[i].split(':')[1] == opt){
+                    b += ','+ad_id+':'+opt+':'+(parseInt(c[i].split(':')[2], 10)+qty);
+                    added = 1;
+                } else {
+                    b += ','+c[i];
+                }
+            }
+            if (!added) b = ','+ad_id+':'+opt+':'+qty+b;
+        }
+        localStorage.setItem('shopping_cart', b);
+        loadCart();
+        alert('Added to Cart!');
+        
     }
-}
-function qtyMinus(){
-    if ($('#qty').val() > 1) {
-        $('#qty').val(parseInt($('#qty').val(), 10)-1);
+        
+    function qtyPlus(){
+        if ($('#qty').val() < 10) {
+            $('#qty').val(parseInt($('#qty').val(), 10)+1);
+        }
     }
-}
+    function qtyMinus(){
+        if ($('#qty').val() > 1) {
+            $('#qty').val(parseInt($('#qty').val(), 10)-1);
+        }
+    }
 </script>
