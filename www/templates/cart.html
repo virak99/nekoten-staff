@@ -1,16 +1,75 @@
 <div class"app-header">
-    <div class="header-title" k="កន្ត្រកទំនិញ">Cart</div>
+    <div class="header-title" k="កន្ត្រកទំនិញ">Cart (2)</div>
 </div>
 
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>  
-    <center style="margin-top:30%; color:#bbb">
+    <center style="margin-top:30%; color:#bbb; display:none">
         <i style="font-size:100px" class="ion-bag"></i>
         <div k="គ្មានទំនិញក្នុងកន្ត្រក">Your Shopping Cart is Empty</div>        
     </center>
-            
+        <div class="wrap">
+            <ul id="cart">
+                
+                
+            <ul>
+        </div>    
   </ion-content>
 </ion-view>
 <script>
+
+
+
+    /*
+    <li class="p-list">
+        <div class="a">
+            <img src="img/1.jpg" style="width:100%">
+        </div>
+        <div class="b">
+            <div class="c">KISSCASE For iPhone 7 Phone Case For iphone 5 5s 6 6s Case 3 in 1 360 Full Protective PC Phone Cases For iPhone 6 6s Plus 7 Plus</div>
+            <div class="cc"><span class="ion-checkmark-round"></span><span k=" មានក្នុងស្តុក"> In Stock</span></div>
+            <div class="e">
+                <div class="d">$3.30</div>
+                <div class="h">
+                    <span class="j ion-ios-minus-empty"></span>
+                    <span id="qty">1</span>
+                    <span class="j ion-ios-plus-empty"></span>
+                </div>
+                <div class="i"><span class="delete ion-ios-trash-outline"></span></div>
+            </div>
+        </div>
+    </li>*/
+
+    
+    var shopping_cart = 'np5t:1:1,kzw3:0:4';
+    var size_l = '120';
+    var size_g = ($(window).width()-30)/2;
+    
+    $.post('http://www.nekoten.khmerqq.com/app/product_item.php',{size_g:size_g, size_l:size_l, ad_id:ad_id},function(data){
+        var arr = JSON.parse(data);
+        for (var i = 0; i < arr.length; i++){
+            var ad = arr[i];
+            var ad_id = ad['ad_id'];
+            /*
+            var str = '<li px_l="'+ad['px_l']+'" px_g="'+ad['px_g']+'" margin="'+ad['margin']+'" onclick="loadProduct(\''+ad_id+'\');" class="p-list">';
+                str += '<div class="a" style="width:'+size_l+'px;height:'+size_l+'px">';
+                    str += '<img style="width:'+ad['w']+'; height:'+ad['h']+'; margin-'+ad['margin']+':'+ad['px_l']+'px" src="http://www.nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1.jpg">';
+                str += '</div>';
+                str += '<div class="b">';
+                    str += '<div class="c">'+ad['title']+'</div>';
+                    str += '<div class="e">';
+                        str += '<div class="d">'+ad['price']+'</div>';
+                        str += '<div class="g">'+ad['n_order']+' Orders</div>';
+                    str += '</div>';
+                str += '</div>';
+            str += '</li>';
+            $('#search_res_item').append(str);
+            */
+        }        
+    });
+    setTimeout(function() {
+        $('#search-search-res').val(keyword);
+    }, 100);
+    
     la();
 </script>

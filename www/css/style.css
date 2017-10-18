@@ -11,6 +11,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     border: none;
     background-color: #f8f8f8;        
 }
+.tabs .tab-item .badge{
+    background-color: #ff3366;
+}
 .gh {
     display: inline-flex;
     width: 100%;
@@ -160,6 +163,39 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 .p-list .c {
     height: 64px;
     overflow: hidden;
+}
+#cart .c{
+    height: 43px;
+}
+#cart .e{
+    display: inline-block;
+}
+#cart .d{
+    float: left;
+}
+#cart .h{
+    float: left;
+    margin-left: 20px;
+}
+#cart .i{
+    float: right;
+    font-size: 20px;
+}
+#cart .j {
+    padding: 0 5px;
+    background: #eee;
+    border-radius: 50%;
+}
+#cart .h #qty {
+    margin: 0 5px;
+    color: #387ef5;
+}
+#cart .cc{
+    font-weight: bold;
+    color: limegreen;
+}
+#cart .d{
+    width: auto;
 }
 .p-list .d {
     color: #ff3366;
