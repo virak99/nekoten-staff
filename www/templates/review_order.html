@@ -1,0 +1,180 @@
+<div class"app-header">
+    <div class="header-title" k="បញ្ជាក់ការកម្មង់">Review Order</div>
+    <div class="back" ng-click="myGoBack()">
+        <span class="ion-ios-arrow-left"></span>
+    </div>
+</div>
+
+<!-- Shipping Info Modal -->
+
+<!-- Choose Location Small Modal -->
+    <div class="sm-modal" id="choose_location">
+        <div class="shadow"></div>
+        <div class="header-title" k="ជ្រើសរើសខេត្តក្រុង">Choose City / Province</div>
+        <div class="back" onclick="closeSmallModal('choose_location')">
+            <span class="close ion-ios-close-empty"></span>
+        </div>                        
+        
+        <ul>
+            <li onclick="selectLocation('Phnom Penh')" k="ភ្នំពេញ">Phnom Penh<span>$ 0 </span></li>
+            <li onclick="selectLocation('Siem Reap')" k="សៀមរាប">Siem Reap<span>$ 2</span></li>
+        </ul>
+    </div>
+    <!-- /Choose Location Small Modal -->
+    
+    
+<div id="shipping_info" class="modal">
+    <div class="header-title" k="អាស័យដ្ឋានដឹកជញ្ជូន">Delivery Address</div>
+    <div class="back" onclick="closeModal('shipping_info')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    
+    <div class="lg">
+        <div class="c">
+            <form id="shipping_info_form">
+                <div class="d">
+                    <div class="e"><span class="ion-ios-person-outline"></span></div>
+                    <div class="f"><input id="name" k="ឈ្មោះ" placeholder="Name" type="text">
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
+                <div class="d">
+                    <div class="e"><span class="ion-ios-telephone"></span></div>
+                    <div class="f"><input id="phone_number" k="ទូរស័ព្ទ" placeholder="Phone Number" type="number" pattern="\d*">
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
+                <div class="d">
+                    <div class="e"><span class="ion-ios-location-outline"></span></div>
+                    <div class="f"><span id="location" class="f2" onclick="openSmallModal('choose_location')">Phnom Penh</span></div>
+                    <div class="f1"><span class="fa fa-angle-right"></span></div>                                                    
+                </div>
+                <div class="d">                    
+                    <div class="f"><input id="home_address" k="ផ្ទះលេខ" placeholder="House Number">
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
+                <div class="d">                    
+                    <div class="f"><input id="stress_address" k="ផ្លូវ" placeholder="Street Address">
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
+                <div class="g">
+                    <button type="submit" k="ផ្ញើរមកកាន់អាស័យដ្ឋាននេះ">Deliver to this Address</button>               
+                </div>
+            </form>
+        </div>            
+    </div>
+                
+</div>
+<!-- /Shipping Info Modal -->
+
+
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>
+        
+        
+        <div class="eq">
+            <div class="a" k="អាស័យដ្ឋានដឹកជញ្ជូន">Delivery Address</div>
+            <div id="shipping_addr" class="b" onclick="openModal('shipping_info')">
+                <span class="c" k="បន្ថែមអាស័យដ្ឋាន">Add an address</span>
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="eq">
+            <div class="a" k="ម៉ោងដឹកជញ្ជូន">Delivery Time</div>
+            <div id="shipping_addr" class="b">
+                asd
+            </div>
+        </div>
+        <div class="eq">
+            <div class="a" k="របៀបបង់ប្រាក់">Payment Method</div>
+            <div id="shipping_addr" class="b">
+                asd
+            </div>
+        </div>
+        <div class="hr"></div>
+        <div class="wrap">
+            <ul class="cart">
+                
+            <ul>
+        </div>  
+        
+    </ion-content>
+    <div class="cart-footer">
+        <div class="e" id="summary" style="display:none">
+            <div class"ff">
+                <span class="ion-ios-close-empty" onclick="$('.cart-footer #summary').hide()"></span>
+                <center k="តម្លៃ">Summary</center>
+            </div>            
+            <div class="g">
+                <span k="សរុបទំនិញ">Subtotal</span> (<span class="cart_count"></span> <span k="មុខ">item</span>)
+                <span class="subtotal"></span>
+            </div>
+            <div class="g">
+                <span k="ថ្លៃដឹកជញ្ជូន">Delivery Fee</span>
+                <span class="delivery_fee"></span>
+            </div>
+            <div class="g h">
+                <span k="សរុប">Total</span>
+                <span class="total"></span>
+            </div>
+                
+        </div>
+        <div class="a" onclick="$('.cart-footer #summary').toggle()">
+            <div class="aa">
+                <div class="b"><span k="តម្លៃសរុប">Total</span></div>
+                <div class="c"><span class="ion-arrow-down-b"></span></div>
+            </div>
+            <div class="ab"><span class="total"></span></div>
+        </div>
+        <div class="d" k="បញ្ជាទិញ" onclick="window.location.href='#tab/review_order/'">PLACE ORDER</div>
+    </div>
+</ion-view>
+<script>
+    la();  
+    loadCart();
+        
+    $('#shipping_info_form input').on('keyup', function(){
+        if ($(this).val() != '') {
+            $(this).siblings('.input-close').show();
+        }
+    });
+    $('#shipping_info_form .input-close').on('click', function(){
+        $(this).hide();
+        $(this).siblings('input').val('');
+    });
+    
+    function closeModal(page){        
+        $('#'+page).hide();
+        $('.header-view').show();        
+        $('.tab-nav').show();
+    }
+    function closeSmallModal(page){        
+        $('#'+page).hide();
+    }
+    
+    function openModal(page){
+        $('#'+page).height($(window).height());
+        $('#'+page).addClass('modal');
+        $('#'+page).show();
+        $('.header-view').hide();        
+        $('.tab-nav').hide();        
+        //StatusBar.hide();
+    }
+    
+    function openSmallModal(page){
+        $('#'+page).height($(window).height());
+        $('#'+page).addClass('modal');
+        $('#'+page).show();
+        $('.header-view').hide();        
+        $('.tab-nav').hide();        
+        //StatusBar.hide();
+    }
+    
+    function selectLocation(location){
+        closeSmallModal('choose_location');
+        $('#shipping_info_form #location').text(location);
+    }
+</script>
+

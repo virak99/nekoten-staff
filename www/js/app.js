@@ -60,10 +60,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/cart',
       views: {
         'cart': {
-          templateUrl: 'templates/cart.html'          
+          templateUrl: 'templates/cart.html',    
+          controller: 'NavCtrl'
         }
       }
     })
+    .state('tab.review_order', {
+    url: '/review_order/',
+    views: {
+      'cart': {
+        templateUrl: 'templates/review_order.html',
+          controller: 'NavCtrl'
+      }
+    }
+  })
+  
     .state('tab.search', {
       url: '/search',
       views: {
@@ -82,15 +93,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/cart/',
-      views: {
-        'cart': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+    
     .state('tab.product', {
       url: '/product/',
       views: {
@@ -119,6 +122,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+   
+  .state('tab.question', {
+    url: '/question',
+    views: {
+      'home': {
+        templateUrl: 'templates/question.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
   
   .state('tab.sign_in', {
     url: '/sign_in',
@@ -143,7 +156,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'more': {
         templateUrl: 'templates/more.html',
-        controller: 'AccountCtrl'
+        controller: 'NavCtrl'
       }
     }
   })
@@ -165,6 +178,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  
   .state('tab.about_us', {
     url: '/about_us/',
     views: {

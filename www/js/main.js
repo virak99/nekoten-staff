@@ -1,3 +1,16 @@
+/* Initial */
+setDefault('delivery_fee', '0');
+setDefault('language', 'English');
+setDefault('delivery_to', 'Phnom Penh, ភ្នំពេញ');
+
+function setDefault(name, value){
+    var a = localStorage.getItem(name);
+    if (a == '' || a == null){
+        localStorage.setItem(name, value);
+    }
+}
+
+
 function isLogined(){
     var a = localStorage.getItem('user_id');
     return (typeof a !== 'undefined' && a !== null);

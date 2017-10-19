@@ -79,7 +79,7 @@
             <div class="b" id="desc"></div>
         </div>
         <div class="hr"></div>
-        <div class="qs">
+        <div class="qs" onclick="alert('hi'); window.location.href='#tab/question'">
             <div class="a" k="សំនួរ និង ចម្លើយ">Question (<span id="n_question">0</span>)</div>
             <div id="question">
             
@@ -98,11 +98,14 @@
     la();
     
     function addToCart(){
+        
         var ad_id = $('#product_body #ad_id').val();
         var qty = parseInt($('.at #qty').val(), 10);
         var opt = 0;
+
         var a = localStorage.getItem('shopping_cart');
-        if (a == ''){
+
+        if (a == '' || a == null){
             var b = ','+ad_id+':'+opt+':'+qty;
         } else {
             var b = '';

@@ -16,23 +16,23 @@
                     <div class="d">
                         <div class="e"><span class="ion-person"></span></div>
                         <div class="f"><input k="ឈ្មោះ" id="full_name" placeholder="Full Name" type="text">
-                            <span style="display:none" class="close ion-ios-close-outline"></span>
+                            <span style="display:none" class="input-close ion-ios-close-outline"></span>
                         </div>
                     </div>
                     <div class="d">
                         <div class="e"><span class="ion-ios-telephone"></span></div>
-                        <div class="f"><input k="លេខទូរស័ព្ទ" id="phone_number" placeholder="Phone Number" type="number">
-                            <span style="display:none" class="close ion-ios-close-outline"></span>
+                        <div class="f"><input k="លេខទូរស័ព្ទ" id="phone_number" placeholder="Phone Number" type="numbeer" pattern="\d*"r">
+                            <span style="display:none" class="input-close ion-ios-close-outline"></span>
                         </div>
                     </div>
                     <div class="d">
                         <div class="e"><span class="ion-ios-locked"></span></div>
                         <div class="f"><input k="លេខសំងាត់" id="password" placeholder="Password" type="password">
-                            <span style="display:none" class="close ion-ios-close-outline"></span>
+                            <span style="display:none" class="input-close ion-ios-close-outline"></span>
                         </div>
                     </div>
                     <div class="g">
-                        <button onclick="submitRegister()" type="submit" k="បង្កើតគណនី">Create my Account</span></button>                
+                        <button onclick="submitRegister()" type="submit" k="បង្កើតគណនី">Create my Account</button>                
                     </div>
                 </form>
             </div>
@@ -44,10 +44,10 @@
     la();
     $('#register_form input').on('keyup', function(){
         if ($(this).val() != '') {
-            $(this).siblings('.close').show();
+            $(this).siblings('.input-close').show();
         }
     });
-    $('#register_form .close').on('click', function(){
+    $('#register_form .input-close').on('click', function(){
         $(this).hide();
         $(this).siblings('input').val('');
     });
