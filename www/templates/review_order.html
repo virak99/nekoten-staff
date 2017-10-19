@@ -14,11 +14,14 @@
         <div class="back" onclick="closeSmallModal('choose_location')">
             <span class="close ion-ios-close-empty"></span>
         </div>                        
-        
-        <ul>
-            <li onclick="selectLocation('Phnom Penh')" k="ភ្នំពេញ">Phnom Penh<span>$ 0 </span></li>
-            <li onclick="selectLocation('Siem Reap')" k="សៀមរាប">Siem Reap<span>$ 2</span></li>
+        <ion-content class="sm-modal-body">
+        <ul id="choose_location_ul">
+            <li onclick="selectLocation('Phnom Penh')"><span k="ភ្នំពេញ">Phnom Penh</span><span>$ 0 </span></li>
+            
+            
         </ul>
+        </ion-content>
+        
     </div>
     <!-- /Choose Location Small Modal -->
     
@@ -99,7 +102,7 @@
                 
             <ul>
         </div>  
-        
+       
     </ion-content>
     <div class="cart-footer">
         <div class="e" id="summary" style="display:none">
@@ -130,15 +133,35 @@
         </div>
         <div class="d" k="បញ្ជាទិញ" onclick="window.location.href='#tab/review_order/'">PLACE ORDER</div>
     </div>
+    
 </ion-view>
 <script>
     la();  
     loadCart();
         
-    $('#shipping_info_form input').on('keyup', function(){
+        
+    $.post('http://www.nekoten.khmerqq.com/app/location.php',{}, function(data){
+        var arr = JSON.parse(data);
+        for (var i = 0; i < arr.length; i++){
+            var a = arr[i];
+            var str = '<li onclick="selectLocation(\''+a['name_en']+'\')">';
+                str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
+                str += '<span>$ '+a['price']+' </span>';
+            str += '</li>';
+            $('#choose_location_ul').append(str); 
+        }
+        load('delivery_to');
+        la();
+    });
+    
+    
+    $('#shipping_info_form input').on('keyup click', function(){
         if ($(this).val() != '') {
             $(this).siblings('.input-close').show();
         }
+    });
+    $('#shipping_info_form input').on('blur', function(){
+            $(this).siblings('.input-close').hide();
     });
     $('#shipping_info_form .input-close').on('click', function(){
         $(this).hide();
@@ -175,6 +198,8 @@
     function selectLocation(location){
         closeSmallModal('choose_location');
         $('#shipping_info_form #location').text(location);
+        $('#shipping_info_form #location').attr('k', location);
+        la();
     }
 </script>
 

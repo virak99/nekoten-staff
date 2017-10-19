@@ -42,10 +42,13 @@
 </ion-view>
 <script>    
     la();
-    $('#register_form input').on('keyup', function(){
+    $('#register_form input').on('keyup click', function(){
         if ($(this).val() != '') {
             $(this).siblings('.input-close').show();
         }
+    });
+    $('#register_form input').on('blur', function(){
+            $(this).siblings('.input-close').hide();
     });
     $('#register_form .input-close').on('click', function(){
         $(this).hide();

@@ -15,6 +15,21 @@ angular.module('starter.controllers', [])
   
 })
 
+.controller('TabCtrl', function($scope){
+    if (localStorage.getItem('language') == 'kh'){
+        $scope.home = 'ទំព័រដើម';
+        $scope.search = 'ស្វែងរក';
+        $scope.cart = 'កន្ត្រកទំនិញ';
+        $scope.my_account = 'គណនី';
+        $scope.more = 'ផ្សេងទៀត';
+    } else {
+        $scope.home = 'Home';
+        $scope.search = 'Search';
+        $scope.cart = 'Cart';
+        $scope.my_account = 'My Account';
+        $scope.more = 'More';
+    }
+})
 
 .controller('NavCtrl', function($scope, $location, $ionicHistory, $state){
         $scope.myGoBack = function() {
