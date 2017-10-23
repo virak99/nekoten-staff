@@ -22,10 +22,10 @@
         for (var i = 0; i < arr.length; i++){
             var a = arr[i];
     
-            var str = '<li onclick="localStorage.setItem(\'delivery_to\', \''+a['name_en']+','+a['name_kh']+'\'); localStorage.setItem(\'delivery_fee\', '+a['price']+');load(\'delivery_to\'); window.location.href=\'#tab/more\'">';
-                str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
-                str += '<span id="'+a['name_en']+'" class="fa fa-check"></span>';
-            str += '</li>';
+            var str = '<ion-item class="item item-complex" onclick="localStorage.setItem(\'delivery_to\', \''+a['name_en']+','+a['name_kh']+'\'); localStorage.setItem(\'delivery_fee\', '+a['price']+');load(\'delivery_to\');">';
+                    str += '<a href="#tab/more" class="item-content"><span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
+                    str += '<span id="'+a['name_en']+'" class="fa fa-check"></span>';
+            str += '</a></ion-item>';
             $('#delivery_to_ul').append(str); 
         }
         load('delivery_to');

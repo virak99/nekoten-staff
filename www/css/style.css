@@ -111,16 +111,18 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     padding: 15px 0px;
     border-bottom: 1px solid #eee;
 }
+.item{
+    background-color: transparent;
+}
 .sh {
     padding: 10px;
 }
 .sh .a{
     font-size:large;
-    padding: 10px 0;
 }
-.sh .b li{
-    padding: 15px 0px;
-    border-bottom: 1px solid #eee;
+.sh .b .item-content, .search-form .item-content{
+    padding: 15px 0; 
+    font-size: 14px;
 }
 .ad-item .a span:last-child{
     float: right;
@@ -139,11 +141,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     padding: 5px 0;
     width: 100%;
 }
+
 .p-list .a{
     width: 30%;
     width: 100px;
     height: 100px;
     overflow: hidden;
+}
+.p-list .item-content{
+    display: inline-flex;
 }
 .p-list .b {
     padding-left: 10px;
@@ -172,6 +178,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 }
 .cart .dd{
     float: left;
+    color: #ff3366;
 }
 .cart .h{
     float: left;
@@ -274,7 +281,9 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     padding: 0;
     margin: 2px;
     display: inline-block;
+    width: 48%;
 }
+
 .p-grid .a{
     width: 100%;
     margin-bottom: 5px;
@@ -613,8 +622,8 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     font-size: 30px;
 }
 .mr{
-    padding: 0 20px;
     font-size: 16px;
+    color: black;
 }
 .mr .a{
     float: right;
@@ -625,8 +634,11 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     margin-right: 10px;
 }
 .mr li{
-    padding: 15px 0;
+    padding: 15px 20px;
     border-bottom: 1px solid #eee;
+}
+.mr .item-content{
+    padding: 15px 20px;
 }
 .mr .fa{
     float: right;
@@ -722,7 +734,7 @@ ion-nav-view{
 .lg .e{
     width: 30px;
     font-size: 18px;
-    line-height: 28px;
+    line-height: 36px;
 }
 .lg .f{
     width: 100%;
@@ -732,6 +744,7 @@ ion-nav-view{
     width: 100%;
     padding: 10px 10px;
     border: none;
+    height: 40px;
     border-bottom: 1px solid #eee;
     border-radius: initial;
 }
@@ -739,6 +752,9 @@ ion-nav-view{
     width: 100%;
     padding: 7px 10px;    
     border-bottom: 1px solid #eee;
+}
+.lg .f .f3{
+    color: #aaa;
 }
 
 .lg .f input:focus{
@@ -778,6 +794,10 @@ ion-nav-view{
     width: 20%;
     text-align: right;
 }
+.sr .item-content{
+    padding: 10px 20px; 
+    font-size: 14px;
+}
 .sr .a{
     padding: 10px 20px;
     width: 100%;
@@ -799,21 +819,26 @@ ion-nav-view{
     position: absolute;
     top: 50px;
     width: 100%;
+    z-index: 10;
 }
 .eq {
     padding: 0 10px;
 }
 .eq .a{
+    display: inline-grid;
     font-size: 16px;
     padding: 10px 0;
     border-bottom: 1px solid #eee;
+    width: 100%;
 }
+
 .eq .c{
     color: #1b95e0;    
 }
-.eq .b {
-    padding: 10px 0;
+.eq .item-content{
+    padding: 10px;
 }
+
 .modal {
     display: none;
     width: 100%;    
@@ -863,11 +888,103 @@ ion-nav-view{
     width: 100%;
     height: 150px;
 }
-#choose_location li {
-    padding: 10px 0;
+.sm-modal-body li {
     border-bottom: 1px solid #eee;
 }
-#choose_location li span:last-child{
+.sm-modal-body li a{
+    padding: 10px 0;
+}
+.sm-modal-body li .price-li{
     float: right;
     color: #ff3366;
+}
+.tp {
+    padding: 0 10px;
+}
+.tp .a, .tp .b, .tp .d{
+    padding: 10px 0;
+}
+.tp .c{
+    height: 1px;
+    background: black;
+}
+.tp .a span:last-child, .tp .b span:last-child{
+    float: right;
+    font-weight: bold;
+}
+.tp .d span:last-child{
+    float: right;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ff3366;
+}
+
+.tp input{
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+    border-radius: initial;
+}
+
+
+.et .a .fa{
+    position: absolute;
+    top: 22px;
+    right: 10px;
+    font-size: 22px;
+}
+.et .a .c{
+    font-size: 14px;
+    color: limegreen;
+}
+.et .a a{
+    padding: 10px;
+    display: inline-grid;
+    width: 100%;
+}
+.et .a{
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+.et .b{
+    margin-bottom: 5px;
+}
+.uu{
+    padding-top: 20px;
+}
+.uu .b{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.uu .a a{
+    padding: 10px;
+}
+.uu .c{
+    color: limegreen;
+}
+.uu .c .ion-arrow-down-b{
+    margin-right: 5px;
+}
+#choose_day_time_ul .item-content{
+    padding: 10px;
+}
+.yo{
+    width: 100%;
+    display: inline-flex;
+}
+.yo .a{
+    width: 60%;
+}
+.yo .b{
+    width: 35%;
+    margin-left: 5%;
+}
+.yo .a li, .yo .b li{
+    padding: 10px;
+}
+.yo .selected{
+    outline: 1px solid #ff3366;
 }

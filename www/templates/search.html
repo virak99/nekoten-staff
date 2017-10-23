@@ -22,8 +22,13 @@
     la();
     localStorage.setItem('search_history', ',Phone,Watch,Clothes,Anker,Shiseido');
     var a = localStorage.getItem('search_history').split(',');
-    for (var i = 1; i < a.length; i++){        
-        $('.sh .b').append('<li onclick="searchProduct(\''+a[i]+'\'); window.location.href=\'#tab/search_res\'")>'+a[i]+'</li>');
+    for (var i = 1; i < a.length; i++){       
+        var str = '<ion-item class="item item-complex" onclick="searchProduct(\''+a[i]+'\');">';
+        str += '<a class="item-content" href="#tab/search_res">';
+        str += a[i];
+        str += '</a></ion_item>';
+        
+        $('.sh .b').append(str);
     }
 </script>
 

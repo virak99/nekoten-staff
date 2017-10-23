@@ -123,7 +123,8 @@
             if (!added) b = ','+ad_id+':'+opt+':'+qty+b;
         }
         localStorage.setItem('shopping_cart', b);
-        loadCart();
+        loadCart('page');
+        loadCart('review_order');
         alert('Added to Cart!');
         
     }

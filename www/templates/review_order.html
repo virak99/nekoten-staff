@@ -5,9 +5,7 @@
     </div>
 </div>
 
-<!-- Shipping Info Modal -->
-
-<!-- Choose Location Small Modal -->
+    <!-- Choose Location Small Modal -->
     <div class="sm-modal" id="choose_location">
         <div class="shadow"></div>
         <div class="header-title" k="ជ្រើសរើសខេត្តក្រុង">Choose City / Province</div>
@@ -16,22 +14,106 @@
         </div>                        
         <ion-content class="sm-modal-body">
         <ul id="choose_location_ul">
-            <li onclick="selectLocation('Phnom Penh')"><span k="ភ្នំពេញ">Phnom Penh</span><span>$ 0 </span></li>
-            
             
         </ul>
         </ion-content>
-        
+    </div>
+    <!-- /Choose Location Modal -->
+    
+    <!-- Choose Khan Small Modal -->
+    <div class="sm-modal" id="choose_khan">
+        <div class="shadow"></div>
+        <div class="header-title" k="ជ្រើសរើសខណ្ឌ">Choose Khan</div>
+        <div class="back" onclick="closeSmallModal('choose_khan')">
+            <span class="close ion-ios-close-empty"></span>
+        </div>                        
+        <ion-content class="sm-modal-body">
+        <ul id="choose_khan_ul">
+            
+        </ul>
+        </ion-content>
+    </div>
+    <!-- /Choose Location Small Modal -->
+    
+    <!-- Choose Khan Small Modal -->
+    <div class="sm-modal" id="choose_khan">
+        <div class="shadow"></div>
+        <div class="header-title" k="ជ្រើសរើសថ្ងៃនិងម៉ោង">Choose Date and Time</div>
+        <div class="back" onclick="closeSmallModal('choose_khan')">
+            <span class="close ion-ios-close-empty"></span>
+        </div>                        
+        <ion-content class="sm-modal-body">
+        <ul id="choose_khan_ul">
+            
+        </ul>
+        </ion-content>
+    </div>
+    <!-- /Choose Location Small Modal -->
+    
+    <!-- Choose Khan Small Modal -->
+    <div class="sm-modal" id="choose_day_time">
+        <div class="shadow"></div>
+        <div class="header-title" k="ជ្រើសរើសថ្ងៃនិងម៉ោង">Choose Date and Time</div>
+        <div class="back" onclick="closeSmallModal('choose_day_time')">
+            <span class="close ion-ios-close-empty"></span>
+        </div>                        
+        <ion-content class="sm-modal-body" style="padding:20px 10px">
+            <div class="yo">
+                <ul id="choose_day_ul" class="a">
+                    
+                </ul>
+                <ul id="choose_time_ul" class="b">
+                   
+                </ul>
+            </div>
+           
+        </ion-content>
     </div>
     <!-- /Choose Location Small Modal -->
     
     
+    
+<!-- Delivery Modal Modal -->
+<div id="delivery_time_modal" class="modal">
+    <div class="header-title" k="ម៉ោងដឹកជញ្ជូន">Delivery Time</div>
+    <div class="back" onclick="closeModal('delivery_time_modal')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    <div class="uu">
+        <div class="a item item-complex" onclick="selectDeliveryType('express')">
+            <a class="item-content">
+                <div class="b" k="ដឹកជញ្ជូនរហ័ស">Express Delivery</div>
+                <div class="c">
+                    <span k="ទទួលទំនិញ" id="express_delivery_type">Recieve Product</span>
+                    <span id="express_delivery_day">Today</span>, 
+                    <span id="express_delivery_time">10:00 - 11:00</div>
+            </a>
+        </div>
+        <div class="a item item-complex"onclick="openSmallModal('choose_day_time')">
+            <a class="item-content">
+                <div class="b" id="schedule_delivery_type" k="ដឹកជញ្ជូនក្នុងពេលកំណត់">Schedule Delivery</div>
+                <div class="c">
+                Recieve Product 
+                <span id="schedule_delivery_day">Today</span>
+                <span class="ion-arrow-down-b"></span>
+                <span id="schedule_delivery_time">10:00 - 11:00</span>
+                <span class="ion-arrow-down-b"></span>
+                    
+            </div>
+            </a>
+        </div>
+    </div>
+    
+    
+</div>
+<!-- /Delivery Time Modal -->
+    
+<!-- Shipping Info Modal -->
 <div id="shipping_info" class="modal">
     <div class="header-title" k="អាស័យដ្ឋានដឹកជញ្ជូន">Delivery Address</div>
     <div class="back" onclick="closeModal('shipping_info')">
         <span class="close ion-ios-close-empty"></span>
     </div>
-    
     <div class="lg">
         <div class="c">
             <form id="shipping_info_form">
@@ -53,7 +135,7 @@
                     <div class="f1"><span class="fa fa-angle-right"></span></div>                                                    
                 </div>
                 <div class="d">                    
-                    <div class="f"><input id="home_address" k="ផ្ទះលេខ" placeholder="House Number">
+                    <div class="f"><input id="home_address" k="ផ្ទះលេខ / ឈ្មោះហាង / ឈ្មោះក្រុមហ៊ុន" placeholder="House Number / Shop Name / Company Name">
                         <span style="display:none" class="input-close ion-ios-close-outline"></span>
                     </div>
                 </div>
@@ -62,49 +144,98 @@
                         <span style="display:none" class="input-close ion-ios-close-outline"></span>
                     </div>
                 </div>
+                 <div class="d">                    
+                    <div class="f"><input id="sangkat" k="សង្កាត់" placeholder="Sangkat / District">
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
+                <div class="d">
+                    <div class="f"><span id="khan" class="f2 f3" onclick="openSmallModal('choose_khan'); $(this).removeClass('f3');">Khan</span></div>
+                    <div class="f1"><span class="fa fa-angle-right"></span></div>                                                    
+                </div>
+                <div class="d">                    
+                    <div class="f"><input id="near_by" k="នៅជិត / នៅទល់មុខ / នៅម្តុំ" placeholder="Near ... / In front of ... "></div>
+                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    </div>
+                </div>
                 <div class="g">
-                    <button type="submit" k="ផ្ញើរមកកាន់អាស័យដ្ឋាននេះ">Deliver to this Address</button>               
+                    <button type="submit" onclick="postAddress()" k="ផ្ញើរមកកាន់អាស័យដ្ឋាននេះ">Deliver to this Address</button>               
                 </div>
             </form>
         </div>            
-    </div>
-                
+    </div>      
 </div>
 <!-- /Shipping Info Modal -->
 
+<!-- ******************************************************************** -->
 
 <ion-view hide-nav-bar="true" class="header-view">
-    <ion-content>
+    <ion-content id="order">
         
         
         <div class="eq">
             <div class="a" k="អាស័យដ្ឋានដឹកជញ្ជូន">Delivery Address</div>
-            <div id="shipping_addr" class="b" onclick="openModal('shipping_info')">
-                <span class="c" k="បន្ថែមអាស័យដ្ឋាន">Add an address</span>
+            <div id="shipping_addr" class="item item-complex">
+                
+            </div>
+            <div class="b item item-complex" id="add_address" onclick="openModal('shipping_info')">
+                <a class="item-content">
+                    <span class="c" k="បន្ថែមអាស័យដ្ឋាន">Add an address</span>
+                </a>
             </div>
         </div>
         <div class="hr"></div>
-        <div class="eq">
-            <div class="a" k="ម៉ោងដឹកជញ្ជូន">Delivery Time</div>
-            <div id="shipping_addr" class="b">
-                asd
+        <div class="et">
+            <div class="a item item-complex" onclick="openModal('delivery_time_modal')">
+                <a class="item-content">
+                    <div class="b" id="delivery_type" k="ដឹកជញ្ជូនរហ័ស">Express Delivery</div>
+                    <div class="c">
+                        <span k="ទទួលទំនិញ">Receive Product</span>
+                        <span id="delivery_day">Today</span>
+                        <span id="delivery_time">08:00 - 09:00</span>    
+                    </div>
+                    <div class="fa fa-angle-right"></div>
+                </a>
             </div>
         </div>
         <div class="eq">
             <div class="a" k="របៀបបង់ប្រាក់">Payment Method</div>
-            <div id="shipping_addr" class="b">
-                asd
+            <div class="b item item-complex" onclick="openModal('shipping_info')">
+                <a class="item-content">
+                    <span class="c" k="បន្ថែមអាស័យដ្ឋាន">Add an address</span>
+                </a>
             </div>
         </div>
         <div class="hr"></div>
         <div class="wrap">
-            <ul class="cart">
+            <ul class="cart" id="cart_review_order">
                 
             <ul>
         </div>  
+        <div class="hr"></div>
+        <div class="tp">
+            
+            <input id="msg_seller" placeholder="Message to the seller" k="សារសំរាប់អ្នកលក់"
+            <span class="input-close ion-ios-close-outline"></span>
+             
+            <div class="a">
+                <span k="សរុបទំនិញ">Subtotal</span> (<span class="cart_count"></span> <span k="មុខ">item</span>)
+                <span class="subtotal"></span>
+            </div>
+            <div class="b">
+                 <span k="ថ្លៃដឹកជញ្ជូន">Delivery Fee</span>
+                <span class="delivery_fee"></span>
+            </div>
+            <div class="c"></div>
+            <div class="d">
+                <span k="សរុប">Total</span>
+                <span class="total"></span>
+            </div>
+        </div>
        
     </ion-content>
     <div class="cart-footer">
+        
         <div class="e" id="summary" style="display:none">
             <div class"ff">
                 <span class="ion-ios-close-empty" onclick="$('.cart-footer #summary').hide()"></span>
@@ -137,20 +268,95 @@
 </ion-view>
 <script>
     la();  
-    loadCart();
+    loadCart('review_order');
+    
+    function postAddress(){
+        var user_id = localStorage.getItem('user_id');
+        var name = $('#shipping_info_form #name').val();
+        var phone_number = $('#shipping_info_form #phone_number').val();
+        var location = $('#shipping_info_form #location').text();
+        var house = $('#shipping_info_form #home_address').val();
+        var street = $('#shipping_info_form #stress_address').val();
+        var sangkat = $('#shipping_info_form #sangkat').val();
+        var khan = $('#shipping_info_form #khan').text();
+        var near_by = $('#shipping_info_form #near_by').val();
+        var coordinate = '123';
+        
+        //alert(name+phone_number+location+house+street+sangkat+khan+near_by+coordinate);
+        
+        $.post('http://www.nekoten.khmerqq.com/app/post_address.php', {user_id:user_id, name: name, phone_number:phone_number, location:location, 
+        house:house, street:street, sangkat:sangkat, khan:khan, near_by:near_by, coordinate:coordinate},
+        function(data){
+            
+            if (data == 'success'){
+                var str = '<a class="item-content"><b>'+name+'</b><br>';
+                str += house+' '+street+'<br>';
+                str += sangkat+' '+khan+'<br>';
+                str += location+'<br>';
+                str += '<span class="ion-ios-telephone-outline"> '+phone_number+'</span></a>';
+                $('.eq #shipping_addr').html(str);
+                closeModal('shipping_info');
+            }
+        });
         
         
+    }
+    /*
+    var name = '1';
+    var house = '2';
+    var street = '3';
+    var sangkat = '4';
+    var khan = '5';
+    var phone_number = '6';
+    
+    
+    var str = '<a class="item-content"><b>'+name+'</b><br>';
+                str += house+' '+street+'<br>';
+                str += sangkat+' '+khan+'<br>';
+                str += location+'<br>';
+                str += '<span class="ion-ios-telephone-outline"> '+phone_number+'</span></a>';
+                $('.eq #shipping_addr').html(str);
+                closeModal('shipping_info');
+        */
     $.post('http://www.nekoten.khmerqq.com/app/location.php',{}, function(data){
         var arr = JSON.parse(data);
         for (var i = 0; i < arr.length; i++){
             var a = arr[i];
             var str = '<li onclick="selectLocation(\''+a['name_en']+'\')">';
                 str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
-                str += '<span>$ '+a['price']+' </span>';
+                str += '<span class="price-li">$ '+a['price']+' </span>';
             str += '</li>';
             $('#choose_location_ul').append(str); 
         }
         load('delivery_to');
+        la();
+    });
+    
+    
+    $.post('http://www.nekoten.khmerqq.com/app/shipping_info.php',{user_id:localStorage.getItem('user_id')}, function(data){
+        var a = JSON.parse(data)[0];
+        if (a['result'] == 'success'){
+            $('.eq #add_address').hide();
+            var str = '<a class="item-content"><b>'+a['name']+'</b><br>';
+            str += a['house']+' '+a['street']+'<br>';
+            str += a['sangkat']+' '+a['khan']+'<br>';
+            str += a['location']+'<br>';
+            str += '<span class="ion-ios-telephone-outline"> '+a['phone_number']+'</span></a>';
+            $('.eq #shipping_addr').html(str);
+        }
+       
+    });
+    
+    $.post('http://www.nekoten.khmerqq.com/app/khan.php',{}, function(data){
+        var arr = JSON.parse(data);
+        for (var i = 0; i < arr.length; i++){
+            var a = arr[i];
+            var str = '<li onclick="selectKhan(\''+a['name_en']+'\')">';
+                str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
+            str += '</li>';
+            $('#choose_khan_ul').append(str); 
+        }
+        //load('delivery_to');
         la();
     });
     
@@ -201,5 +407,51 @@
         $('#shipping_info_form #location').attr('k', location);
         la();
     }
+    function selectKhan(khan){
+        closeSmallModal('choose_khan');
+        $('#shipping_info_form #khan').text(khan);
+        $('#shipping_info_form #khan').attr('k', khan);
+        la();
+    }
+    function selectDeliveryType(type){
+        closeModal('delivery_time_modal');
+        $('#order #delivery_type').text($('#delivery_time_modal #'+type+'_delivery_type').text());
+        $('#order #delivery_time').text($('#delivery_time_modal #'+type+'_delivery_time').text());
+        $('#order #delivery_day').text($('#delivery_time_modal #'+type+'_delivery_day').text());
+    }
+        
+    var lang = localStorage.getItem('language');
+    $.post('http://www.nekoten.khmerqq.com/module/date_select.php',{lang:lang}, function(data){
+        a = JSON.parse(data);
+        for (var i = 0; i < a.length; i++){
+            var str = '<li value="'+a[i]['val']+'"';
+            if (i == 0) str += ' class="selected" ';
+            str += 'onclick="selectDayTime(\'day\', \''+a[i]['val']+'\')">';
+            str += a[i]['txt'];
+            str += '</li>';
+            $('.yo #choose_day_ul').append(str);
+        }
+    });
+    
+    
+    var chosen_date = 'Today';
+    $.post('http://www.nekoten.khmerqq.com/module/time_select.php',{lang:lang, chosen_date:chosen_date}, function(data){
+        a = JSON.parse(data);
+        for (var i = 0; i < a.length; i++){
+            var str = '<li value="'+a[i]+'"';
+            if (i == 0) str += ' class="selected" ';
+            str += 'onclick="selectDayTime(\'time\', \''+a[i]+'\')">';
+            str += a[i];
+            str += '</li>';
+            $('.yo #choose_time_ul').append(str);
+        }
+        
+    });
+    
+   function selectDayTime(type, val){
+       $('#choose_'+type+'_ul li').removeClass('selected');
+       $('#choose_'+type+'_ul li[value="'+val+'"]').addClass('selected');
+   }
+   
 </script>
 

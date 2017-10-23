@@ -7,18 +7,24 @@
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>
         <ul class="mr">
-            <li onclick="localStorage.setItem('language', 'en'); window.location.href='index.html'">
+            <ion-item onclick="setLang('en')">
                 <span>English</span>
                 <span id="en" class="fa fa-check"></span>
-            </li>
-            <li onclick="localStorage.setItem('language', 'kh'); window.location.href='index.html'">
+            </ion-item>
+            <ion-item onclick="setLang('kh')">
                 <span>ភាសាខ្មែរ</span>
                 <span id="kh" class="fa fa-check"></span>
-            </li>            
+            </ion-item>            
         </ul>        
     </ion-content>
 </ion-view>
 <script>  
     la();
     load('language');
+    function setLang(lang){
+        var lang_now = localStorage.getItem('language');
+        if (lang == lang_now) return false;
+        localStorage.setItem('language', lang); 
+        window.location.href='index.html';
+    }
 </script>

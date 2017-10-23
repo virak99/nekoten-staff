@@ -1,12 +1,21 @@
-/* Initial */
-setDefault('delivery_fee', '0');
-setDefault('language', 'English');
-setDefault('delivery_to', 'Phnom Penh, ភ្នំពេញ');
 
 function setDefault(name, value){
     var a = localStorage.getItem(name);
     if (a == '' || a == null){
         localStorage.setItem(name, value);
+    }
+}
+
+/* Initial */
+setDefault('delivery_fee', '0');
+setDefault('language', 'English');
+setDefault('delivery_to', 'Phnom Penh, ភ្នំពេញ');
+
+function la(en, kh){
+    if (localStorage.getItem('language') == 'en'){
+        return en;
+    } else {
+        return kh;
     }
 }
 
@@ -126,9 +135,10 @@ function searchKeyword(tab){
             $('.search-form').height('800px');
             for (var i = 0; i < arr.length; i++){
                 var ad = arr[i];
-                
+                var str = '<ion-item class="item item-complex" onclick="search(\''+ad['keyword']+'\')")>';
+                str += '<a class="item-content">'+ad['keyword']+'</a></ion-item>';
                 //$('.search-form').append('<li onclick="$(\'#search_res_item\').html(\'\'); cancelClick(); searchProduct(\''+ad['keyword']+'\'); window.location.href=\'#tab/search_res\'")>'+ad['keyword']+'</li>');
-                $('.search-form').append('<li onclick="search(\''+ad['keyword']+'\')")>'+ad['keyword']+'</li>');
+                $('.search-form').append(str);
                 
                 
             }
@@ -154,7 +164,7 @@ function searchProduct(keyword) {
         for (var i = 0; i < arr.length; i++){
             var ad = arr[i];
             var ad_id = ad['ad_id'];
-            var str = '<li px_l="'+ad['px_l']+'" px_g="'+ad['px_g']+'" margin="'+ad['margin']+'" onclick="loadProduct(\''+ad_id+'\');" class="p-list">';
+            var str = '<li class="p-list" px_l="'+ad['px_l']+'" px_g="'+ad['px_g']+'" margin="'+ad['margin']+'" onclick="loadProduct(\''+ad_id+'\');">';
                 str += '<div class="a" style="width:'+size_l+'px;height:'+size_l+'px">';
                     str += '<img style="width:'+ad['w']+'; height:'+ad['h']+'; margin-'+ad['margin']+':'+ad['px_l']+'px" src="http://www.nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1.jpg">';
                 str += '</div>';

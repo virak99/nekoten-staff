@@ -6,11 +6,11 @@
     <ion-content>  
         
         <div class="wrap">
-            <ul class="cart">
+            <ul class="cart" id="cart_cart">
                 
             <ul>
         </div>  
-        <div class="ion-footer-cart"></div>
+        
     </ion-content>
     <div class="cart-footer" style="display:none">
         <div class="e" id="summary" style="display:none">
@@ -48,7 +48,7 @@
     
     $('.cart-footer .d').click();
 
-    function loadCart(){
+    function loadCart(page){
         $('.cart').html('');
         var shopping_cart = localStorage.getItem('shopping_cart');
         if (!shopping_cart){
@@ -91,7 +91,7 @@
                             str += '</div>';
                         str += '</div>';
                     str += '</li>';
-                    $('.cart').append(str);                            
+                    $('#cart_'+page).append(str);                            
                     
                     $('.subtotal').text('$ '+subtotal.toFixed(2));
                     $('.total').text('$ '+(parseFloat(subtotal)+parseFloat(delivery_fee)).toFixed(2));
@@ -104,7 +104,7 @@
         }
     }    
     la();
-    loadCart();
+    loadCart('cart');
     
     function deleteCart(ad_id){
         if (confirm('Remove this item from your Shopping Cart?')){
