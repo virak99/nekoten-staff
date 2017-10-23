@@ -66,11 +66,19 @@
                    
                 </ul>
             </div>
+            <button class="c" k="យល់ព្រម" onclick="setScheduleDate()">Okay</button>
            
         </ion-content>
     </div>
     <!-- /Choose Location Small Modal -->
-    
+    <script>
+        function setScheduleDate(){
+            closeModal('delivery_time_modal');
+            closeSmallModal('choose_day_time');
+            $('.et #delivery_day').text($('.yo #choose_day_ul [class="selected"]').text());
+            $('.et #delivery_time').text($('.yo #choose_time_ul [class="selected"]').text());
+        }
+    </script>
     
     
 <!-- Delivery Modal Modal -->
@@ -93,12 +101,7 @@
             <a class="item-content">
                 <div class="b" id="schedule_delivery_type" k="ដឹកជញ្ជូនក្នុងពេលកំណត់">Schedule Delivery</div>
                 <div class="c">
-                Recieve Product 
-                <span id="schedule_delivery_day">Today</span>
-                <span class="ion-arrow-down-b"></span>
-                <span id="schedule_delivery_time">10:00 - 11:00</span>
-                <span class="ion-arrow-down-b"></span>
-                    
+                <span k="កំនត់ថ្ងៃនិងម៉ោងទទួលទំនិញ">Set date and time to recieve product</span>
             </div>
             </a>
         </div>

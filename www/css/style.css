@@ -859,18 +859,18 @@ ion-nav-view{
 }
 .sm-modal .shadow{
     width: 100%;
-    height: 120px;
+    height: 50px;
     background: rgba(0,0,0,.3);
     z-index: 100000;
     
 }    
 .sm-modal .sm-modal-body{
-    margin-top: 160px;
+    margin-top: 90px;
     padding: 20px;
     
 }
 .sm-modal .back .close{
-    top: 100px;
+    top: 30px;
     position: fixed;
 }
 .sm-modal .header-title{
@@ -987,4 +987,13 @@ ion-nav-view{
 }
 .yo .selected{
     outline: 1px solid #ff3366;
+}
+#choose_day_time .c{
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background: #ff3366;
+    border: none;
 }
