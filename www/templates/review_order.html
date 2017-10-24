@@ -71,15 +71,44 @@
         </ion-content>
     </div>
     <!-- /Choose Location Small Modal -->
-    <script>
-        function setScheduleDate(){
-            closeModal('delivery_time_modal');
-            closeSmallModal('choose_day_time');
-            $('.et #delivery_day').text($('.yo #choose_day_ul [class="selected"]').text());
-            $('.et #delivery_time').text($('.yo #choose_time_ul [class="selected"]').text());
-        }
-    </script>
     
+    
+    
+    
+   
+<!-- Payment Method Modal -->
+<div id="payment_method_modal" class="modal">
+    <div class="header-title" k="របៀបបង់បា្រក់">Payment Method</div>
+    <div class="back" onclick="closeModal('payment_method_modal')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    <div class="uu">
+        <div class="a item item-complex" onclick="selectPaymentMethod('cash_on_delivery')">
+            <a class="item-content">
+                <div class="b" k="បង់ប្រាក់ពេលទទួលទំនិញ" id="cash_on_delivery">Cash on Delivery</div>
+                <div class="c">
+                    <span k="បង់ប្រាក់ពេលលោកអ្នកបានទទួលទំនិញរួចរាល់">Pay when you receive the product</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="a item item-complex" onclick="selectPaymentMethod('transfer_money')">
+            <a class="item-content">
+                <div class="b" k="ផ្ញើរប្រាក់តាមទូរស័ព្ទ">Transfer money</div>
+                <div class="c payment" id="transfer_money">
+                    <span k="ផ្ញើរប្រាក់តាម">Transfer money via</span>
+                    <img class="d" src="img/wing.jpg"/>
+                    <img class="e" src="img/true_money.jpg">
+                    <img class="f" src="img/emoney.jpg">
+                </div>
+            </a>
+        </div>
+        
+    </div>
+</div>
+<!-- /Delivery Time Modal -->
+
+
     
 <!-- Delivery Modal Modal -->
 <div id="delivery_time_modal" class="modal">
@@ -106,10 +135,10 @@
             </a>
         </div>
     </div>
-    
-    
 </div>
 <!-- /Delivery Time Modal -->
+
+
     
 <!-- Shipping Info Modal -->
 <div id="shipping_info" class="modal">
@@ -201,24 +230,30 @@
                 </a>
             </div>
         </div>
-        <div class="eq">
-            <div class="a" k="របៀបបង់ប្រាក់">Payment Method</div>
-            <div class="b item item-complex" onclick="openModal('shipping_info')">
+        
+        <div class="et">
+            <div class="a item item-complex" onclick="openModal('payment_method_modal')">
                 <a class="item-content">
-                    <span class="c" k="បន្ថែមអាស័យដ្ឋាន">Add an address</span>
+                    <div class="b" k="របៀបបង់ប្រាក់">Payment Method</div>
+                    <div class="c payment">
+                        <span class="ion-cash"></span> 
+                        <span id="payment_method" k="បង់ប្រាក់ពេលទំនិញដល់ដៃ">Cash on Delivery</span>
+                    </div>
+                    <div class="fa fa-angle-right"></div>
                 </a>
             </div>
         </div>
+        
         <div class="hr"></div>
         <div class="wrap">
-            <ul class="cart" id="cart_review_order">
+            <ul class="cart">
                 
             <ul>
         </div>  
         <div class="hr"></div>
         <div class="tp">
             
-            <input id="msg_seller" placeholder="Message to the seller" k="សារសំរាប់អ្នកលក់"
+            <input id="msg_seller" placeholder="Message to the seller (Optional)" k="សារសំរាប់អ្នកលក់ (មិនបំពេញក៏បាន)"
             <span class="input-close ion-ios-close-outline"></span>
              
             <div class="a">
@@ -271,7 +306,7 @@
 </ion-view>
 <script>
     la();  
-    loadCart('review_order');
+    loadCart();
     
     function postAddress(){
         var user_id = localStorage.getItem('user_id');
@@ -422,6 +457,11 @@
         $('#order #delivery_time').text($('#delivery_time_modal #'+type+'_delivery_time').text());
         $('#order #delivery_day').text($('#delivery_time_modal #'+type+'_delivery_day').text());
     }
+    
+    function selectPaymentMethod(type){
+        closeModal('payment_method_modal');
+        $('#order #payment_method').html($('#payment_method_modal #'+type).html());
+    }
         
     var lang = localStorage.getItem('language');
     $.post('http://www.nekoten.khmerqq.com/module/date_select.php',{lang:lang}, function(data){
@@ -455,6 +495,15 @@
        $('#choose_'+type+'_ul li').removeClass('selected');
        $('#choose_'+type+'_ul li[value="'+val+'"]').addClass('selected');
    }
+   
+
+    function setScheduleDate(){
+        closeModal('delivery_time_modal');
+        closeSmallModal('choose_day_time');
+        $('.et #delivery_day').text($('.yo #choose_day_ul [class="selected"]').text());
+        $('.et #delivery_time').text($('.yo #choose_time_ul [class="selected"]').text());
+    }
+
    
 </script>
 

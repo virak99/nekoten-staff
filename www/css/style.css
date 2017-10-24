@@ -114,14 +114,13 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
 .item{
     background-color: transparent;
 }
-.sh {
-    padding: 10px;
-}
+
 .sh .a{
+    padding: 15px;
     font-size:large;
 }
 .sh .b .item-content, .search-form .item-content{
-    padding: 15px 0; 
+    padding: 15px; 
     font-size: 14px;
 }
 .ad-item .a span:last-child{
@@ -799,7 +798,7 @@ ion-nav-view{
     font-size: 14px;
 }
 .sr .a{
-    padding: 10px 20px;
+    padding: 10px 15px;
     width: 100%;
     display: inline-flex;
     border-bottom: 1px solid #eee;
@@ -821,13 +820,11 @@ ion-nav-view{
     width: 100%;
     z-index: 10;
 }
-.eq {
-    padding: 0 10px;
-}
+
 .eq .a{
     display: inline-grid;
+    padding: 10px 15px;
     font-size: 16px;
-    padding: 10px 0;
     border-bottom: 1px solid #eee;
     width: 100%;
 }
@@ -836,7 +833,7 @@ ion-nav-view{
     color: #1b95e0;    
 }
 .eq .item-content{
-    padding: 10px;
+    padding: 10px 15px;
 }
 
 .modal {
@@ -898,11 +895,9 @@ ion-nav-view{
     float: right;
     color: #ff3366;
 }
-.tp {
-    padding: 0 10px;
-}
+
 .tp .a, .tp .b, .tp .d{
-    padding: 10px 0;
+    padding: 10px 15px;
 }
 .tp .c{
     height: 1px;
@@ -921,7 +916,7 @@ ion-nav-view{
 
 .tp input{
     width: 100%;
-    padding: 10px 10px;
+    padding: 10px 15px;
     border: none;
     height: 40px;
     border-bottom: 1px solid #eee;
@@ -940,7 +935,7 @@ ion-nav-view{
     color: limegreen;
 }
 .et .a a{
-    padding: 10px;
+    padding: 10px 15px;
     display: inline-grid;
     width: 100%;
 }
@@ -965,8 +960,30 @@ ion-nav-view{
 .uu .c{
     color: limegreen;
 }
+.scroll{
+    padding-bottom: 150px;   
+}
 .uu .c .ion-arrow-down-b{
     margin-right: 5px;
+}
+.payment .d{
+    width: 38px;
+    position: absolute;
+    bottom: 7px;
+    margin-left: 5px;
+}
+.payment .e{
+    width: 40px;
+    margin-left: 48px;
+    position: absolute;
+    bottom: 6px;
+}
+
+.payment .f {
+    width: 56px;
+    margin-left: 85px;
+    position: absolute;
+    bottom: 13px;
 }
 #choose_day_time_ul .item-content{
     padding: 10px;

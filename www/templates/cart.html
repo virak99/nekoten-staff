@@ -6,7 +6,7 @@
     <ion-content>  
         
         <div class="wrap">
-            <ul class="cart" id="cart_cart">
+            <ul class="cart">
                 
             <ul>
         </div>  
@@ -46,10 +46,11 @@
 
 <script>
     
+    
     $('.cart-footer .d').click();
 
-    function loadCart(page){
-        $('.cart').html('');
+    function loadCart(){
+        
         var shopping_cart = localStorage.getItem('shopping_cart');
         if (!shopping_cart){
             $('#no_item_in_cart').show();        
@@ -71,8 +72,9 @@
                 cart_count += parseInt(qty);
                 
                 $.post('http://www.nekoten.khmerqq.com/app/product_item.php',{qty:qty, size_l:size_l, ad_id:ad_id},function(data){
+                    $('.cart').html('');
                     var ad = JSON.parse(data)[0];        
-                    subtotal += parseFloat(ad['price'].replace('$ ', ''))*parseInt(qty);                     
+                    subtotal += parseFloat(ad['price'].replace('$ ', '').replace(',', ''))*parseInt(qty);                     
                     var str = '<li class="p-list" id="cart-item-'+ad['ad_id']+'">';
                         str += '<div class="a" style="width:'+size_l+'px;height:'+size_l+'px">';
                             str += '<img src="http://nekoten.khmerqq.com/ads/'+ad['ad_id']+'/1_m.jpg" style="width:'+ad['w']+'; height:'+ad['h']+'; margin-'+ad['margin']+':'+ad['px_l']+'px">';
@@ -91,7 +93,7 @@
                             str += '</div>';
                         str += '</div>';
                     str += '</li>';
-                    $('#cart_'+page).append(str);                            
+                    $('.cart').append(str);                            
                     
                     $('.subtotal').text('$ '+subtotal.toFixed(2));
                     $('.total').text('$ '+(parseFloat(subtotal)+parseFloat(delivery_fee)).toFixed(2));
@@ -104,7 +106,7 @@
         }
     }    
     la();
-    loadCart('cart');
+    loadCart();
     
     function deleteCart(ad_id){
         if (confirm('Remove this item from your Shopping Cart?')){
@@ -119,14 +121,44 @@
         }
     }
     function qtyPlus(ad_id){
-        if ($('#cart-item-'+ad_id+' #qty').text()<10){
-            $('#cart-item-'+ad_id+' #qty').text(parseInt($('#cart-item-'+ad_id+' #qty').text(), 10) + 1);    
+        if ($('#cart-item-'+ad_id+' #qty').html()<10){
+            //$('#cart-item-'+ad_id+' #qty').html(parseInt($('#cart-item-'+ad_id+' #qty').html(), 10) + 1);    
+            var a = localStorage.getItem('shopping_cart');
+            var b = a.split(',');
+            var d = '';
+            
+            for (var i = 1; i < b.length; i++){
+                var c = b[i].split(':');
+                d += ','+c[0]+':'+c[1]+':';
+                if (c[0] == ad_id){
+                    d += parseInt(c[2],10) + 1; 
+                } else {
+                    d += c[2];
+                }
+            }
+            localStorage.setItem('shopping_cart', d);
+            loadCart();
         }        
     }
     function qtyMinus(ad_id){
-        if ($('#cart-item-'+ad_id+' #qty').text() > 0){
-            $('#cart-item-'+ad_id+' #qty').text(parseInt($('#cart-item-'+ad_id+' #qty').text(), 10) - 1);
-        }
+        if ($('#cart-item-'+ad_id+' #qty').html()>0){
+            //$('#cart-item-'+ad_id+' #qty').html(parseInt($('#cart-item-'+ad_id+' #qty').html(), 10) + 1);    
+            var a = localStorage.getItem('shopping_cart');
+            var b = a.split(',');
+            var d = '';
+            
+            for (var i = 1; i < b.length; i++){
+                var c = b[i].split(':');
+                d += ','+c[0]+':'+c[1]+':';
+                if (c[0] == ad_id){
+                    d += parseInt(c[2],10) - 1; 
+                } else {
+                    d += c[2];
+                }
+            }
+            localStorage.setItem('shopping_cart', d);
+            loadCart();
+        }   
     }
     
         
