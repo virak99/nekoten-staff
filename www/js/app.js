@@ -66,6 +66,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('tab.wishlist', {
+      url: '/wishlist',
+      views: {
+        'account': {
+          templateUrl: 'templates/wishlist.html',    
+          controller: 'NavCtrl'
+        }
+      }
+    })
     .state('tab.review_order', {
     url: '/review_order/',
     views: {
@@ -123,16 +132,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-   
-  .state('tab.question', {
-    url: '/question',
-    views: {
-      'home': {
-        templateUrl: 'templates/question.html',
-        controller: 'NavCtrl'
-      }
-    }
-  })
+
   
   .state('tab.sign_in', {
     url: '/sign_in',

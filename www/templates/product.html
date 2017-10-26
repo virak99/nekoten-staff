@@ -1,7 +1,42 @@
+<!-- Shipping Info Modal -->
+<div id="delivery_option_product" class="modal">
+    <div class="header-title" k="អាស័យដ្ឋានដឹកជញ្ជូន">Delivery Address</div>
+    <div class="back" onclick="closeModal('delivery_option_product')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    
+    <ion-content class="sm-modal-body">
+        <ul id="choose_location_ul">
+            
+        </ul>
+    </ion-content>    
+</div>
+<!-- /Shipping Info Modal -->
+
+<!-- Question Modal -->
+<div id="question_modal" class="modal">
+    <div class="header-title"><span k="សំនួរ">Question</span> (<span id="n_question"></span>)</div>
+    <div class="back" onclick="closeModal('question_modal')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    
+    <ion-content class="sm-modal-body qs">
+        <div id="question">
+            
+        </div>
+    </ion-content>    
+    <div class="question-footer">
+        <input placeholder="Ask about the product" k="សួរអំពីផលិតផល">
+        <button k="សួរ">Ask</button>
+    </div>
+</div>
+<!-- /Question Modal -->
+
 <ion-view hide-nav-bar="true">
     <ion-content>
         <div class="back" ng-click="myGoBack()" onclick="$('#ad_image').html('');$('#product_body').hide()">
             <span class="ion-ios-arrow-left"></span>
+            <span class="ion-ios-cart-outline"></span>
         </div>
         
         <div id="ad_images">
@@ -39,25 +74,35 @@
                 </div>
             </div>
             <div class="hr"></div>
-            <div class="dt">
-                <div class="c">
-                    <div class="a" k="ដឹកទោកាន់">Deliver to</div>
-                    <div class="b">
-                        <select id="location">
-                            
-                        </select>
+            
+            <div class="et" id="product_delivery_to">
+            <div class="a item item-complex" onclick="openModal('delivery_option_product')">
+                <a class="item-content">
+                    <div class="b" id="delivery_type"><span k="ដឹកទៅកាន់">Deliver to</span> <strong id="delivery_to"></strong></div>
+                    <div class="c">
+                        <span k="ថ្លៃដឹកជញ្ជូន">Delivery Fee</span>                        
+                        <span id="delivery_fee">$0</span>    
                     </div>
-                </div>
-                <div class="c">
-                    <div class="a" k="ថ្លៃដឹកជញ្ជូន">Delivery fee</div>
-                    <div id="delivery_fee">Free</div>
-                </div>
-                <div class="c">
-                    <div class="a" k="ទទួលទំនិញ">Recieve product</div>
-                    <div id="delivery_time"></div>
-                </div>
+                    <div class="c">
+                        <span k="ទទួលទំនិញ">Receive Product</span>
+                        <span id="delivery_day">Today</span>
+                        <span id="delivery_time">08:00 - 09:00</span>    
+                    </div>
+                    <div class="fa fa-angle-right"></div>                    
+                </a>
             </div>
         </div>
+        <script>
+        
+        if (localStorage.getItem('language') == 'en'){            
+            $('#product_delivery_to #delivery_to').text(localStorage.getItem('delivery_to').split(',')[0]);
+        } else {
+            $('#product_delivery_to #delivery_to').text(localStorage.getItem('delivery_to').split(',')[1]);
+        } 
+        
+        </script>
+        
+        
         <div class="hr"></div>
         <div class="at">
             <div class="a">
@@ -70,7 +115,7 @@
             </div>
         </div>
         <div class="bt">
-            <span class="h" k="សួរសំនួរ">Ask Question</span>
+            <span class="h" onclick="loadQuestionList('modal'); openModal('question_modal')" k="សួរសំនួរ">Ask Question</span>
             <span class="i" k="ដាក់ចូលកន្ត្រក" onclick="addToCart()">Add to Cart</span>
         </div>
         <div class="hr"></div>
@@ -79,7 +124,7 @@
             <div class="b" id="desc"></div>
         </div>
         <div class="hr"></div>
-        <div class="qs" onclick="alert('hi'); window.location.href='#tab/question'">
+        <div class="qs" id="question_panel" onclick="loadQuestionList(); openModal('question_modal')">
             <div class="a" k="សំនួរ និង ចម្លើយ">Question (<span id="n_question">0</span>)</div>
             <div id="question">
             
@@ -97,6 +142,32 @@
 </ion-view>
 <script>
     la();
+    
+    $.post('http://www.nekoten.khmerqq.com/app/location.php',{}, function(data){
+        var arr = JSON.parse(data);
+        for (var i = 0; i < arr.length; i++){
+            var a = arr[i];
+            var str = '<li class="item item-complex" onclick="selectLocation(\''+a['name_en']+'\', \''+a['name_kh']+'\')">';
+                str += '<a class="item-content">';
+                str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
+                str += '<span class="price-li">$ '+a['price']+' </span>';
+            str += '</a></li>';
+            $('#choose_location_ul').append(str); 
+        }
+        load('delivery_to');
+        la();
+    });
+    
+    
+    
+    function selectLocationProduct(name_en, name_kh){
+        closeSmallModal('delivery_option_product');
+        if (localStorage.getItem('language') == 'en'){
+            $('#product_body #product_delivery_to').text(name_en);    
+        } else {
+            $('#product_body #product_delivery_to').text(name_kh);    
+        }
+    }
     
     function addToCart(){
         
@@ -124,7 +195,7 @@
         }
         localStorage.setItem('shopping_cart', b);
         loadCart('page');
-        loadCart('review_order');
+        loadCart('review');
         alert('Added to Cart!');
         
     }

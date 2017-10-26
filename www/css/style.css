@@ -187,6 +187,10 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     float: right;
     font-size: 20px;
 }
+.p-list .ee{
+    width: 100%;
+    margin-top: 15px;
+}
 .cart-footer {
     bottom: 115px;
     position: fixed;
@@ -405,16 +409,7 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     width: 100px;
     text-align: center;
 }
-.dt .a{
-    width: 50%;
-    padding-left: 20px; 
-}
-.dt .b{
-    width: 50%;
-}
-.dt{
-    width: 100%
-}
+
 .pd {
     padding: 10px;
 }
@@ -620,6 +615,15 @@ ion-tabs.tabs-color-active-positive .tab-item.tab-item-active{
     line-height: 30px;
     font-size: 30px;
 }
+.back .ion-ios-cart-outline{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    padding: 25px 20px;
+    line-height: 30px;
+    font-size: 30px;
+}
 .mr{
     font-size: 16px;
     color: black;
@@ -747,6 +751,14 @@ ion-nav-view{
     border-bottom: 1px solid #eee;
     border-radius: initial;
 }
+.lg .f textarea{
+    width: 100%;
+    padding: 10px 10px;
+    border: none;
+    height: 80px;
+    border-bottom: 1px solid #eee;
+    border-radius: initial;
+}
 .lg .f .f2{
     width: 100%;
     padding: 7px 10px;    
@@ -756,7 +768,7 @@ ion-nav-view{
     color: #aaa;
 }
 
-.lg .f input:focus{
+.lg .f input:focus, .lg .f textarea:focus{
     border-bottom: 1px solid #ff3366;
 }
 .lg .g {
@@ -766,7 +778,7 @@ ion-nav-view{
     color: #1b95e0;
     margin-top: 10px;
 }
-.lg .g button{
+.lg .g button, .my-btn{
     background-color: #ff3366;
     width: 100%;
     padding: 10px;
@@ -836,24 +848,28 @@ ion-nav-view{
     padding: 10px 15px;
 }
 
-.modal {
-    display: none;
+.modal {    
+    transform: translateY(100%);
     width: 100%;    
     background: white;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9998;
+    transition: 0.3s;
 }
 .sm-modal {
-    display: none;
+    transform: translateY(100%);
     width: 100%;    
     background: white;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 9999;
+    height: 100%;
+    transition: 0.3s;
 }
+
 .sm-modal .shadow{
     width: 100%;
     height: 50px;
@@ -862,9 +878,11 @@ ion-nav-view{
     
 }    
 .sm-modal .sm-modal-body{
-    margin-top: 90px;
-    padding: 20px;
-    
+    margin-top: 90px !important;        
+}
+
+.modal .sm-modal-body {
+    margin-top: 60px;        
 }
 .sm-modal .back .close{
     top: 30px;
@@ -889,7 +907,7 @@ ion-nav-view{
     border-bottom: 1px solid #eee;
 }
 .sm-modal-body li a{
-    padding: 10px 0;
+    padding: 15px;
 }
 .sm-modal-body li .price-li{
     float: right;
@@ -933,6 +951,10 @@ ion-nav-view{
 .et .a .c{
     font-size: 14px;
     color: limegreen;
+}
+.et .a .cc{
+    font-size: 14px;
+    color:#aaa;
 }
 .et .a a{
     padding: 10px 15px;
@@ -1012,5 +1034,47 @@ ion-nav-view{
     font-size: 16px;
     color: white;
     background: #ff3366;
+    border: none;
+}
+
+.my-tab {
+    height: 40px;
+    margin-top: 20px;
+}
+.my-tab .a{
+    width: 50%;
+    float: left;
+    padding: 5px 10px;
+    text-align: center;
+    border-bottom: 1px solid #aaa;
+}
+.my-tab .selected{
+    border-bottom: 2px solid #ff3366;
+}
+.eq #shipping_addr .fa{
+    position: absolute;
+    top: 22px;
+    right: 10px;
+    font-size: 22px;
+}
+.question-footer{
+    position: fixed;
+    bottom: 0;
+    background: #eee;
+    width: 100%;
+    padding: 10px;
+}
+.question-footer input{
+    width: calc(100% - 55px);
+    padding: 0 10px;
+    height: 30px;
+    border: none;
+}
+.question-footer button{
+    width: 50px;
+    float: right;
+    height: 30px;
+    background: #ff3366;
+    color: white;
     border: none;
 }

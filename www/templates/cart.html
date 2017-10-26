@@ -1,12 +1,12 @@
 <div class"app-header">
-    <div class="header-title" k="កន្ត្រកទំនិញ">Cart (<span class="cart_count"></span>)</div>
+    <div class="header-title"><span k="កន្ត្រកទំនិញ">Cart</span> (<span class="cart_count"></span>)</div>
 </div>
 
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>  
         
         <div class="wrap">
-            <ul class="cart">
+            <ul class="cart" id="cart-panel">
                 
             <ul>
         </div>  
@@ -39,7 +39,7 @@
             </div>
             <div class="ab"><span class="total"></span></div>
         </div>
-        <div class="d" k="ទិញ" onclick="window.location.href='#tab/review_order/'">BUY (<span class="cart_count"></span>)</div>
+        <div class="d" onclick="window.location.href='#tab/review_order/'"><span k="ទិញ">BUY</span> (<span class="cart_count"></span>)</div>
     </div>
     
 </ion-view>
@@ -49,7 +49,7 @@
     
     $('.cart-footer .d').click();
 
-    function loadCart(){
+    function loadCart(tab){
         
         var shopping_cart = localStorage.getItem('shopping_cart');
         if (!shopping_cart){
@@ -72,7 +72,7 @@
                 cart_count += parseInt(qty);
                 
                 $.post('http://www.nekoten.khmerqq.com/app/product_item.php',{qty:qty, size_l:size_l, ad_id:ad_id},function(data){
-                    $('.cart').html('');
+                    $('#cart-'+tab).html('');
                     var ad = JSON.parse(data)[0];        
                     subtotal += parseFloat(ad['price'].replace('$ ', '').replace(',', ''))*parseInt(qty);                     
                     var str = '<li class="p-list" id="cart-item-'+ad['ad_id']+'">';
@@ -93,20 +93,17 @@
                             str += '</div>';
                         str += '</div>';
                     str += '</li>';
-                    $('.cart').append(str);                            
+                    $('#cart-'+tab).append(str);                            
                     
                     $('.subtotal').text('$ '+subtotal.toFixed(2));
                     $('.total').text('$ '+(parseFloat(subtotal)+parseFloat(delivery_fee)).toFixed(2));
                 });                 
             }
             $('.cart_count').text(cart_count);
-            
-            
-            
         }
     }    
     la();
-    loadCart();
+    loadCart('panel');
     
     function deleteCart(ad_id){
         if (confirm('Remove this item from your Shopping Cart?')){
@@ -137,7 +134,8 @@
                 }
             }
             localStorage.setItem('shopping_cart', d);
-            loadCart();
+            loadCart('panel');
+            loadCart('review');
         }        
     }
     function qtyMinus(ad_id){
@@ -157,7 +155,8 @@
                 }
             }
             localStorage.setItem('shopping_cart', d);
-            loadCart();
+            loadCart('panel');
+            loadCart('review');
         }   
     }
     

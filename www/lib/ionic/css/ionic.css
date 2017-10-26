@@ -5973,8 +5973,7 @@ button.item.item-complex {
 .item-complex .item-content,
 .item-radio .item-content {
   position: relative;
-  z-index: 2;
-  padding: 0 10px;
+  z-index: 2;  
   border: none; }
 
 a.item-content {

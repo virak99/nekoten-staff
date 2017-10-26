@@ -13,44 +13,16 @@
             <span class="close ion-ios-close-empty"></span>
         </div>                        
         <ion-content class="sm-modal-body">
-        <ul id="choose_location_ul">
-            
-        </ul>
-        </ion-content>
+            <ul id="choose_location_ul_2">
+                
+            </ul>
+            </ion-content>
     </div>
     <!-- /Choose Location Modal -->
     
-    <!-- Choose Khan Small Modal -->
-    <div class="sm-modal" id="choose_khan">
-        <div class="shadow"></div>
-        <div class="header-title" k="ជ្រើសរើសខណ្ឌ">Choose Khan</div>
-        <div class="back" onclick="closeSmallModal('choose_khan')">
-            <span class="close ion-ios-close-empty"></span>
-        </div>                        
-        <ion-content class="sm-modal-body">
-        <ul id="choose_khan_ul">
-            
-        </ul>
-        </ion-content>
-    </div>
-    <!-- /Choose Location Small Modal -->
+   
     
-    <!-- Choose Khan Small Modal -->
-    <div class="sm-modal" id="choose_khan">
-        <div class="shadow"></div>
-        <div class="header-title" k="ជ្រើសរើសថ្ងៃនិងម៉ោង">Choose Date and Time</div>
-        <div class="back" onclick="closeSmallModal('choose_khan')">
-            <span class="close ion-ios-close-empty"></span>
-        </div>                        
-        <ion-content class="sm-modal-body">
-        <ul id="choose_khan_ul">
-            
-        </ul>
-        </ion-content>
-    </div>
-    <!-- /Choose Location Small Modal -->
-    
-    <!-- Choose Khan Small Modal -->
+    <!-- Choose Date and Time Small Modal -->
     <div class="sm-modal" id="choose_day_time">
         <div class="shadow"></div>
         <div class="header-title" k="ជ្រើសរើសថ្ងៃនិងម៉ោង">Choose Date and Time</div>
@@ -70,7 +42,7 @@
            
         </ion-content>
     </div>
-    <!-- /Choose Location Small Modal -->
+    <!-- /Choose Date and Time Small Modal -->
     
     
     
@@ -147,7 +119,7 @@
         <span class="close ion-ios-close-empty"></span>
     </div>
     <div class="lg">
-        <div class="c">
+        <div class="cc">
             <form id="shipping_info_form">
                 <div class="d">
                     <div class="e"><span class="ion-ios-person-outline"></span></div>
@@ -166,34 +138,41 @@
                     <div class="f"><span id="location" class="f2" onclick="openSmallModal('choose_location')">Phnom Penh</span></div>
                     <div class="f1"><span class="fa fa-angle-right"></span></div>                                                    
                 </div>
-                <div class="d">                    
-                    <div class="f"><input id="home_address" k="ផ្ទះលេខ / ឈ្មោះហាង / ឈ្មោះក្រុមហ៊ុន" placeholder="House Number / Shop Name / Company Name">
-                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                <div class="my-tab">
+                    <div class="a selected" id="tab-address" onclick="selectTab('tab-address')">
+                        <span>ADDRESS</span>
+                    </div>
+                    <div class="a" id="tab-gps" onclick="selectTab('tab-gps'); getLocation()">
+                        <span>GPS</span>
                     </div>
                 </div>
-                <div class="d">                    
-                    <div class="f"><input id="stress_address" k="ផ្លូវ" placeholder="Street Address">
-                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                <div class="my-tab-content">
+                    <div class="a" id="tab-address">
+                        <div class="d">                    
+                            <div class="f">
+                                <input id="address" k="អាស័យដ្ឋាន (ឧ: ផ្ទះលេខ 41 ផ្លូវ 126)" placeholder="Address (ex: No. 41, St. 126)">
+                                <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                            </div>
+                        </div>
+                        <div class="d">   
+                            <div class="f"><input id="near_by" k="នៅជិត (ឧ: នៅជិតផ្សារធំថ្មី)" placeholder="Nearby (ex: Near Phsar Thom Thmey)">
+                                <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-                 <div class="d">                    
-                    <div class="f"><input id="sangkat" k="សង្កាត់" placeholder="Sangkat / District">
-                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
-                    </div>
-                </div>
-                <div class="d">
-                    <div class="f"><span id="khan" class="f2 f3" onclick="openSmallModal('choose_khan'); $(this).removeClass('f3');">Khan</span></div>
-                    <div class="f1"><span class="fa fa-angle-right"></span></div>                                                    
-                </div>
-                <div class="d">                    
-                    <div class="f"><input id="near_by" k="នៅជិត / នៅទល់មុខ / នៅម្តុំ" placeholder="Near ... / In front of ... "></div>
-                        <span style="display:none" class="input-close ion-ios-close-outline"></span>
+                    <div class="a hide" id="tab-gps">
+                        <iframe allow="geolocation" id="gps-map-frame" style="width:100%;height:250px" frameborder="0"
+                            src="">
+                        </iframe>
+                        <input id="coordinate" type="hidden">
                     </div>
                 </div>
                 <div class="g">
                     <button type="submit" onclick="postAddress()" k="ផ្ញើរមកកាន់អាស័យដ្ឋាននេះ">Deliver to this Address</button>               
                 </div>
             </form>
+            
         </div>            
     </div>      
 </div>
@@ -246,7 +225,7 @@
         
         <div class="hr"></div>
         <div class="wrap">
-            <ul class="cart">
+            <ul class="cart" id="cart-review">
                 
             <ul>
         </div>  
@@ -306,33 +285,51 @@
 </ion-view>
 <script>
     la();  
-    loadCart();
-    
+    loadCart('review');
+
+    function selectTab(tab){
+        $('.my-tab-content .a').hide();
+        $('.my-tab-content #'+tab).show();
+        $('.my-tab .a').removeClass('selected');
+        $('.my-tab #'+tab).addClass('selected');
+    }
+    function getLocation(){
+        var onSuccess = function(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var str = 'https://www.google.com/maps/embed/v1/place?key=AIzaSyDocD-TtjQMfFFWBrBVUnl9BzBrhmX-AdA&q='+lat+','+lng;
+            $('#gps-map-frame').attr('src', str);
+            $('#coordinate').val(lat+','+lng);
+            
+        };
+        navigator.geolocation.getCurrentPosition(onSuccess);
+    }
+
     function postAddress(){
         var user_id = localStorage.getItem('user_id');
         var name = $('#shipping_info_form #name').val();
         var phone_number = $('#shipping_info_form #phone_number').val();
         var location = $('#shipping_info_form #location').text();
-        var house = $('#shipping_info_form #home_address').val();
-        var street = $('#shipping_info_form #stress_address').val();
-        var sangkat = $('#shipping_info_form #sangkat').val();
-        var khan = $('#shipping_info_form #khan').text();
+        var address = $('#shipping_info_form #address').val();
         var near_by = $('#shipping_info_form #near_by').val();
-        var coordinate = '123';
         
-        //alert(name+phone_number+location+house+street+sangkat+khan+near_by+coordinate);
+        var addr_selected = $('.my-tab #tab-address').hasClass('selected');
+       
+        if (addr_selected) {
+            var coordinate = '';
+        } else {
+            var coordinate = $('#shipping_info_form #coordinate').val();
+        }
         
         $.post('http://www.nekoten.khmerqq.com/app/post_address.php', {user_id:user_id, name: name, phone_number:phone_number, location:location, 
-        house:house, street:street, sangkat:sangkat, khan:khan, near_by:near_by, coordinate:coordinate},
+        address:address, near_by:near_by, coordinate:coordinate},
         function(data){
-            
             if (data == 'success'){
                 var str = '<a class="item-content"><b>'+name+'</b><br>';
-                str += house+' '+street+'<br>';
-                str += sangkat+' '+khan+'<br>';
-                str += location+'<br>';
-                str += '<span class="ion-ios-telephone-outline"> '+phone_number+'</span></a>';
+                str += address+'<br>';
+                str += '<span class="ion-ios-telephone-outline"> '+phone_number+'</span></a><div class="fa fa-angle-right"></div>';
                 $('.eq #shipping_addr').html(str);
+                $('#add_address').hide();
                 closeModal('shipping_info');
             }
         });
@@ -360,43 +357,33 @@
         var arr = JSON.parse(data);
         for (var i = 0; i < arr.length; i++){
             var a = arr[i];
-            var str = '<li onclick="selectLocation(\''+a['name_en']+'\')">';
+            var str = '<li class="item item-complex" onclick="selectLocation(\''+a['name_en']+'\', \''+a['name_kh']+'\')">';
+                str += '<a class="item-content">';
                 str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
                 str += '<span class="price-li">$ '+a['price']+' </span>';
-            str += '</li>';
-            $('#choose_location_ul').append(str); 
+            str += '</a></li>';
+            $('#choose_location_ul_2').append(str); 
         }
         load('delivery_to');
         la();
     });
     
-    
+    /*
     $.post('http://www.nekoten.khmerqq.com/app/shipping_info.php',{user_id:localStorage.getItem('user_id')}, function(data){
         var a = JSON.parse(data)[0];
         if (a['result'] == 'success'){
+            
             $('.eq #add_address').hide();
             var str = '<a class="item-content"><b>'+a['name']+'</b><br>';
-            str += a['house']+' '+a['street']+'<br>';
-            str += a['sangkat']+' '+a['khan']+'<br>';
+            str += a['address']+'<br>';
             str += a['location']+'<br>';
             str += '<span class="ion-ios-telephone-outline"> '+a['phone_number']+'</span></a>';
             $('.eq #shipping_addr').html(str);
         }
        
     });
+    */
     
-    $.post('http://www.nekoten.khmerqq.com/app/khan.php',{}, function(data){
-        var arr = JSON.parse(data);
-        for (var i = 0; i < arr.length; i++){
-            var a = arr[i];
-            var str = '<li onclick="selectKhan(\''+a['name_en']+'\')">';
-                str += '<span k="'+a['name_kh']+'">'+a['name_en']+'</span>';
-            str += '</li>';
-            $('#choose_khan_ul').append(str); 
-        }
-        //load('delivery_to');
-        la();
-    });
     
     
     $('#shipping_info_form input').on('keyup click', function(){
@@ -412,45 +399,16 @@
         $(this).siblings('input').val('');
     });
     
-    function closeModal(page){        
-        $('#'+page).hide();
-        $('.header-view').show();        
-        $('.tab-nav').show();
-    }
-    function closeSmallModal(page){        
-        $('#'+page).hide();
-    }
     
-    function openModal(page){
-        $('#'+page).height($(window).height());
-        $('#'+page).addClass('modal');
-        $('#'+page).show();
-        $('.header-view').hide();        
-        $('.tab-nav').hide();        
-        //StatusBar.hide();
-    }
-    
-    function openSmallModal(page){
-        $('#'+page).height($(window).height());
-        $('#'+page).addClass('modal');
-        $('#'+page).show();
-        $('.header-view').hide();        
-        $('.tab-nav').hide();        
-        //StatusBar.hide();
-    }
-    
-    function selectLocation(location){
+    function selectLocation(name_en, name_kh){
         closeSmallModal('choose_location');
-        $('#shipping_info_form #location').text(location);
-        $('#shipping_info_form #location').attr('k', location);
-        la();
+        if (localStorage.getItem('language') == 'en'){
+            $('#shipping_info_form #location').text(name_en);
+        } else {
+            $('#shipping_info_form #location').text(name_kh);
+        }        
     }
-    function selectKhan(khan){
-        closeSmallModal('choose_khan');
-        $('#shipping_info_form #khan').text(khan);
-        $('#shipping_info_form #khan').attr('k', khan);
-        la();
-    }
+   
     function selectDeliveryType(type){
         closeModal('delivery_time_modal');
         $('#order #delivery_type').text($('#delivery_time_modal #'+type+'_delivery_type').text());

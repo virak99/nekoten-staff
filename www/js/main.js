@@ -1,15 +1,19 @@
 
 function setDefault(name, value){
     var a = localStorage.getItem(name);
-    if (a == '' || a == null){
-        localStorage.setItem(name, value);
+    if (typeof a === 'undefined' && a === null){
+        localStorage.setItem(name, value);                 
     }
+    
 }
 
 /* Initial */
 setDefault('delivery_fee', '0');
-setDefault('language', 'English');
-setDefault('delivery_to', 'Phnom Penh, ភ្នំពេញ');
+setDefault('language', 'en');
+setDefault('delivery_to', 'Phnom Penh,ភ្នំពេញ');
+
+
+
 
 function la(en, kh){
     if (localStorage.getItem('language') == 'en'){
@@ -25,6 +29,33 @@ function isLogined(){
     return (typeof a !== 'undefined' && a !== null);
 }
 
+
+
+function closeSmallModal(page){        
+    $('#'+page).css('transform', 'translateY(100%)');    
+}
+
+function openModal(page){
+    $('#'+page).height($(window).height());        
+    $('#'+page).css('transform', 'translateY(0)');
+    $('.header-view').hide();        
+    $('.tab-nav').hide();        
+    //StatusBar.hide();
+}
+function closeModal(page){        
+    $('#'+page).css('transform', 'translateY(100%)');    
+    $('.header-view').show();        
+    $('.tab-nav').show();
+}
+
+
+function openSmallModal(page){
+    $('#'+page).height($(window).height());
+    $('#'+page).css('transform', 'translateY(0)');    
+    $('.header-view').hide();        
+    $('.tab-nav').hide();        
+    //StatusBar.hide();
+}
 
 function loadProduct(ad_id){  
 
@@ -88,18 +119,56 @@ function loadProduct(ad_id){
         $('.dt #delivery_time').html('Tomorrow Morning');
     });
     
+    /*
     $.post('http://www.nekoten.khmerqq.com/app/question.php',{ad_id:ad_id},function(data){
         var arr = JSON.parse(data);
-        $('.qs #question').html('');
-        $('#n_question').text(arr[0]['nq']);
+        $('#question_panel #question').html('');
+        $('question_panel #n_question').text(arr[0]['nq']);
         for (var i = 0; i < arr.length; i++){
             var q = arr[i];
-            $('.qs #question').append('<div class="b"><div class="c"><img src="http://www.nekoten.khmerqq.com/users/'+q['posted_by']+'/profile.jpg"></div><div class="d"><div class="g"><span class="e">'+q['full_name']+'</span><span class="f">'+q['posted_date']+'</span></div><div class="h">'+q['question']+'</div></div></div>');
-        }
-        
+            var str = '<div class="b">';
+                str += '<div class="c">';
+                    str += '<img src="http://www.nekoten.khmerqq.com/users/'+q['posted_by']+'/profile.jpg">';
+                str += '</div>';
+                str += '<div class="d">';
+                    str += '<div class="g">';
+                        str += '<span class="e">'+q['full_name']+'</span>';
+                        str += '<span class="f">'+q['posted_date']+'</span>';
+                    str += '</div>';
+                    str += '<div class="h">'+q['question']+'</div>';
+                str += '</div></div>';
+            $('#question_panel #question').append(str);
+        }        
     });
-     window.location.href='#tab/product/';
-    
+    */
+    loadQuestionList('panel');
+    window.location.href='#tab/product/';    
+}
+
+
+function loadQuestionList(opt){
+    var ad_id = $('#ad_id').val();
+    $.post('http://www.nekoten.khmerqq.com/app/question.php',{ad_id:ad_id},function(data){
+        var arr = JSON.parse(data);
+        $('#question_'+opt+' #question').html('');
+        $('#question_'+opt+' #n_question').text(arr[0]['nq']);
+        for (var i = 0; i < arr.length; i++){
+            var q = arr[i];
+            
+            var str = '<div class="b">';
+                str += '<div class="c">';
+                    str += '<img src="http://www.nekoten.khmerqq.com/users/'+q['posted_by']+'/profile.jpg">';
+                str += '</div>';
+                str += '<div class="d">';
+                    str += '<div class="g">';
+                        str += '<span class="e">'+q['full_name']+'</span>';
+                        str += '<span class="f">'+q['posted_date']+'</span>';
+                    str += '</div>';
+                    str += '<div class="h">'+q['question']+'</div>';
+                str += '</div></div>';
+            $('#question_'+opt+' #question').append(str);
+        }        
+    });
 }
 
 
