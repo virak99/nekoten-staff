@@ -15,4 +15,34 @@ function signin(){
     });
 }
 
+localStorage.setItem('staff_id', '001');
+localStorage.setItem('name_en', 'Vong Virak');
+localStorage.setItem('name_kh', 'kk');
+
+
+function closeSmallModal(page){        
+    $('#'+page).css('transform', 'translateY(100%)');    
+}
+
+function openModal(page){
+    $('#'+page).height($(window).height());        
+    $('#'+page).css('transform', 'translateY(0)');
+    $('.header-view').hide();        
+    $('.tab-nav').hide();        
+    //StatusBar.hide();
+}
+function closeModal(page){        
+    $('#'+page).css('transform', 'translateY(100%)');    
+    $('.header-view').show();        
+    $('.tab-nav').show();
+}
+
+
+function openSmallModal(page){
+    $('#'+page).height($(window).height());
+    $('#'+page).css('transform', 'translateY(0)');    
+    $('.header-view').hide();        
+    $('.tab-nav').hide();        
+    //StatusBar.hide();
+}
 

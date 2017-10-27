@@ -5678,14 +5678,17 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
  * --------------------------------------------------
  */
 .item {
-
+  border-color: #ddd;
+  background-color: #fff;
   color: #444;
   position: relative;
   z-index: 2;
   display: block;
   margin: -1px;
   padding: 16px;
-  border-bottom: 1px solid #eee;}
+  border-width: 1px;
+  border-style: solid;
+  font-size: 16px; }
   .item h2 {
     margin: 0 0 2px 0;
     font-size: 16px;
@@ -5948,7 +5951,8 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
 .item-content h6,
 .item-content p {
   overflow: hidden;
-  text-overflow: ellipsis;}
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 a.item {
   color: inherit;
@@ -5973,8 +5977,10 @@ button.item.item-complex {
 .item-complex .item-content,
 .item-radio .item-content {
   position: relative;
-  z-index: 2;  
-  border: none; }
+  z-index: 2;
+  padding: 16px 49px 16px 16px;
+  border: none;
+  background-color: #fff; }
 
 a.item-content {
   display: block;

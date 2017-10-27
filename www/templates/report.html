@@ -1,25 +1,102 @@
-<div class"app-header">
+<!-- Report Modal -->
+<div id="report_modal" class="modal">
     <div class="header-title">Report</div>
+    <div class="back" onclick="closeModal('report_modal')">
+        <span class="close ion-ios-close-empty"></span>
+    </div>
+    
+        <div class="modal-body report-body">
+            <div class="tt">
+                <input id="report_id" type="hidden">
+                <input id="title" placeholder="Title">
+                <textarea id="body" placeholder="Report Body"></textarea>
+                <button class="btn" onclick="submitReport()">Submit</button>
+            </div>
+        </div>
+    
+</div>
+<!-- /Report Modal -->
+    
+    
+<div class"app-header">
+    <div class="header-title">Report List</div>
+    <div onclick="newReport()">
+        <span class="compose ion-ios-compose-outline"></span>
+    </div>
 </div>
 
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>  
         <ul class="ff" id="reports">
+            <script>/*
             <li class="item item-complex">
                 <a class="item-content">
-                    12/09/2019
+                    <div id="title">12/09/2019</div>
+                    <div id="body">Today, I don't want to do it ...</div>
                 </a>
             </li>
+            */</script>
         </ul>
         
     </ion-content>
 </ion-view>
 
-<script>       
-    //var staff_id = localStorage.getItem('staff_id');
-    var staff_id = '001';
-    alert('hi');
-    $.post('http://nekoten.khmerqq.com/staff/report.php', {staff_id:staff_id}, function(data){
-        alert(data); 
-    });
+<script>    
+    openModal('report_modal');
+    loadReportList();
+    
+    function submitReport(){
+        var report_id = $('.tt #report_id').val();
+        var staff_id = localStorage.getItem('staff_id');
+        var body = $('.tt #body').val();
+        var title = $('.tt #title').val();
+        
+        $.post('http://nekoten.khmerqq.com/staff/submit_report.php', 
+        {report_id:report_id, staff_id:staff_id, title:title, body:body}, function(data){
+            if (data == 'success'){
+                alert('Report Saved.');
+                if (report_id == ''){
+                    loadReportList();
+                } else {
+                    $('#report-'+report_id+' #body').text(body);
+                    $('#report-'+report_id+' #title').text(title);
+                }
+                closeModal('report_modal');  
+            }
+        }); 
+    }
+
+    function loadReportList(){
+        $('#reports').html('');
+        var staff_id = localStorage.getItem('staff_id');
+        
+        $.post('http://nekoten.khmerqq.com/staff/report.php', {staff_id:staff_id}, function(data){
+            var a = JSON.parse(data);
+            for (var i = 0; i < a.length; i++){
+                var b = a[i];
+                str = '<li id="report-'+b['id']+'" class="item item-complex" onclick="openReport(\''+b['id']+'\')">';
+                    str += '<a class="item-content">';
+                        str += '<div id="title">'+b['title']+'</div>';
+                            str += '<div id="body">'+b['body']+'</div>';
+                            str += '<span class="ion-ios-arrow-right"></span>';
+                    str += '</a>';
+                str += '</li>';
+                $('#reports').append(str);
+            }
+        });
+    }
+    function openReport(id){
+        $('.tt #report_id').val(id);
+        $('.tt #title').val($('#report-'+id+' #title').text());
+        $('.tt #body').val($('#report-'+id+' #body').text());
+        openModal('report_modal');  
+    }
+    function newReport(){
+        openModal('report_modal'); 
+        $('.tt #report_id').val(''); 
+        $('.tt #title').val('');
+        $('.tt #body').val('');        
+        
+    }
+    
 </script>

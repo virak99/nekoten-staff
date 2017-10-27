@@ -7,12 +7,11 @@
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/owl.carousel.min.css" rel="stylesheet">
     <link href="lib/ionic/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <script src="js/jquery-1.9.1.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
+
     
     
     
@@ -36,11 +35,29 @@
       <ion-nav-back-button>
       </ion-nav-back-button>
     </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
+    
+    <!-- Sign In Modal -->
+    <div id="sign_in_modal" class="sign-in" style="display:none">
+        <div class="header-title">Sign in</div>
+        <div class="gu">
+            <img src="img/nekoten.png">
+            <span>Nekoten Staff</span>
+        </div>
+        <form class="uu">
+            <div class="a">
+                <label>Username</label>
+                <input value="virak99" id="user_name"/>
+            </div>
+            <div class="a">
+                <label>Password</label>
+                <input type="password" value="1" id="password"/>
+            </div>
+            <button class="btn" onclick="signin()">Sign in</button>
+        </form>
+    </div>
+    <!-- /Sign In Modal -->
+    
+    
     <ion-nav-view></ion-nav-view>
   </body>
 </html>
