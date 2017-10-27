@@ -20,13 +20,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    
-    
   });
-
 })
-
-
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -40,80 +35,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab', {
     url: '/tab',
     abstract: true,
-    templateUrl: 'templates/tabs.html',
-    controller: 'TabCtrl'
+    templateUrl: 'templates/tabs.html'
   })
 
   // Each tab has its own nav history stack:
 
-  .state('tab.home', {
-    url: '/home',
+  .state('tab.order', {
+    url: '/order',
     views: {
-      'home': {
-        templateUrl: 'templates/home.html',
-        controller: 'ScrollCtrl'
+      'order': {
+        templateUrl: 'templates/order.html',
+        controller: 'NavCtrl'
       }
     }
   })
-  
 
-  .state('tab.cart', {
-      url: '/cart',
-      views: {
-        'cart': {
-          templateUrl: 'templates/cart.html',    
-          controller: 'NavCtrl'
-        }
-      }
-    })
-    .state('tab.wishlist', {
-      url: '/wishlist',
-      views: {
-        'account': {
-          templateUrl: 'templates/wishlist.html',    
-          controller: 'NavCtrl'
-        }
-      }
-    })
-    .state('tab.review_order', {
-    url: '/review_order/',
+    .state('tab.report', {
+    url: '/report',
     views: {
-      'cart': {
-        templateUrl: 'templates/review_order.html',
-          controller: 'NavCtrl'
+      'report': {
+        templateUrl: 'templates/report.html',
+        controller: 'NavCtrl'
       }
     }
   })
-  
-    .state('tab.search', {
-      url: '/search',
-      views: {
-        'search': {
-          templateUrl: 'templates/search.html',
-          controller: 'NavCtrl'
-        }
-      }
-    })
-    .state('tab.search_res', {
-      url: '/search_res',
-      views: {
-        'search': {
-          templateUrl: 'templates/search_res.html',
-          controller: 'NavCtrl'
-        }
-      }
-    })
-    
-    .state('tab.product', {
-      url: '/product/',
-      views: {
-        'home': {
-          templateUrl: 'templates/product.html',
-          controller: 'NavCtrl'
-        }
-      }
-    })
-    
+
   .state('tab.account', {
     url: '/account',
     views: {
@@ -122,103 +68,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'NavCtrl'
       }
     }
-  })
-    .state('tab.account_settings', {
-    url: '/account_settings',
-    views: {
-      'account': {
-        templateUrl: 'templates/account_settings.html',
-        controller: 'NavCtrl'
-      }
-    }
-  })
-
-  
-  .state('tab.sign_in', {
-    url: '/sign_in',
-    views: {
-      'account': {
-        templateUrl: 'templates/sign_in.html',
-        controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.register', {
-    url: '/register',
-    views: {
-      'account': {
-        templateUrl: 'templates/register.html',
-        controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.more', {
-    url: '/more',
-    views: {
-      'more': {
-        templateUrl: 'templates/more.html',
-        controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.delivery_to', {
-    url: '/delivery_to/',
-    views: {
-      'more': {
-        templateUrl: 'templates/delivery_to.html',
-          controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.language', {
-    url: '/language/',
-    views: {
-      'more': {
-        templateUrl: 'templates/language.html',
-          controller: 'NavCtrl'
-      }
-    }
-  })
-  
-  .state('tab.about_us', {
-    url: '/about_us/',
-    views: {
-      'more': {
-        templateUrl: 'templates/about_us.html',
-          controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.help_center', {
-    url: '/help_center/',
-    views: {
-      'more': {
-        templateUrl: 'templates/help_center.html',
-          controller: 'NavCtrl'
-      }
-    }
-  })
-  .state('tab.contact_us', {
-    url: '/contact_us/',
-    views: {
-      'more': {
-        templateUrl: 'templates/contact_us.html',
-          controller: 'NavCtrl'
-      }
-    }
-  })
-
-.state('tab.feedback', {
-    url: '/feedback/',
-    views: {
-      'more': {
-        templateUrl: 'templates/feedback.html',
-          controller: 'NavCtrl'
-      }
-    }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/order');
 
 });

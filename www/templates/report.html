@@ -1,0 +1,25 @@
+<div class"app-header">
+    <div class="header-title">Report</div>
+</div>
+
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>  
+        <ul class="ff" id="reports">
+            <li class="item item-complex">
+                <a class="item-content">
+                    12/09/2019
+                </a>
+            </li>
+        </ul>
+        
+    </ion-content>
+</ion-view>
+
+<script>       
+    //var staff_id = localStorage.getItem('staff_id');
+    var staff_id = '001';
+    alert('hi');
+    $.post('http://nekoten.khmerqq.com/staff/report.php', {staff_id:staff_id}, function(data){
+        alert(data); 
+    });
+</script>

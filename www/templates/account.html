@@ -1,74 +1,22 @@
-<div class"app-header">
-    <div class="header-title" k="គណនីរបស់ខ្ញុំ">Account</div>    
-</div>
-<ion-view hide-nav-bar="true" class="header-view">
-    <ion-content>  
-        <div class="gh">
-            <div class="a">
-                <div class="c" id="full_name"></div>
-                <div class="d" id="phone_number"></div>
-            </div>
-            <div class="b">
-                <div class="e">
-                    <span class="ion-ios-email-outline"></span>
-                    <span class="ion-ios-bell-outline"></span>
-                    <span onclick="window.location.href='#tab/account_settings'" class="ion-ios-gear-outline"></span>
-                </div>
-                <img id="profile_pic">
-            </div>
-        </div>
-        <div class="hr"></div>
-        <ul class="mr">
-            <ion-item href="#">
-            <span class="b ion-ios-list-outline"></span>
-                <span k="ការកម្មង់របស់ខ្ញុំ">My Order</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-            <ion-item href="#tab/wishlist">
-                <span class="b ion-ios-heart-outline"></span>
-                <span k="ទំនិញចង់បាន">My Wishlist</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-            <ion-item href="#">
-                <span class="b ion-ios-location-outline"></span>
-                <span k="អាស័យដ្ឋានដឹកជញ្ជូន">My Shipping Address</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-            <ion-item href="#">
-                <span class="b ion-ios-chatbubble-outline"></span>
-                <span k="រង្វាយតម្លៃ">My Review</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-            <ion-item href="#">
-                <span class="b ion-ios-help-outline"></span>
-                <span k="សំនួរ ចម្លើយ">My Question</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-            <ion-item href="#">
-                <span class="b ion-ios-eye-outline"></span>
-                <span k="ទំនិញដែលទើបចូលមើល">Recently viewed Products</span>
-                <span class="fa fa-angle-right"></span>
-            </ion-item>
-        </ul>
-        
-        <center style="margin-top:20%"><a href="#/tab/register" id="register_click">Register</a>
-    <a href="#/tab/sign_in" id="sign_in_click">Sign In</a></center>
-   
+<ion-view view-title="Account">
+  <ion-content>
+    <div class="er">
+        <img src=""
+        <span id="name_en"></span>
+    </div>
+    <div class="gt">
+        <button class="btn" onclick="sign_out()">Sign Out</button>
+    </div>
   </ion-content>
 </ion-view>
 
 <script>
-    la();
-    setTimeout(function() {
-        if (!isLogined()) {
-            $('#register_click').click();        
-        } else {
-            
-            $('.gh #full_name').text(localStorage.getItem('full_name'));
-            $('.gh #phone_number').text(localStorage.getItem('phone_number'));
-            $('.gh #profile_pic').attr('src', 'http://www.nekoten.khmerqq.com/users/'+localStorage.getItem('user_id')+'/profile.jpg');
-        }   
-    }, 1);
+    $('.er #name_en').text(localStorage.getItem('name_en'));
+    
+    function sign_out(){
+        localStorage.removeKey('staff_id');
+        localStorage.removeKey('name_en');
+        localStorage.removeKey('name_kh');
+        openModal('sign_in_modal');
+    }
 </script>
-
-
