@@ -1,0 +1,48 @@
+<div class"app-header">
+    <form class="bar bar-header item-input-inset" onsubmit="searchKeyword()">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input class="search" type="search" placeholder="Search Name, ID, Address, Phone Number" ontouchstart="$('.button-clear').show();">
+        </label>
+        <button class="button button-clear hide" ontouchstart="$(this).hide(); $('.search').val('')">
+            Cancel
+        </button>
+    </form>
+</div>
+
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>
+        <div class="tb tb-4">            
+            <div class="a active">            
+                <span class="c">Order</span>
+            </div>
+            <div class="a">            
+                <span class="c">Store</span>
+            </div>
+            <div class="a">            
+                <span class="c">Product</span>
+            </div>
+            <div class="a">            
+                <span class="c">User</span>
+            </div>        
+        </div>
+        <script>    
+            $('.tb .a').on('touchstart', function(){                    
+                $('.tb .a').removeClass('active');
+                $(this).addClass('active');
+            });               
+            //var url= 'http://nekoten.sangskrit.com/';    
+            //cordova.InAppBrowser.open(url,'_blank','location=yes');    
+        </script>
+        <div class="it" id="search_res">
+            
+        </div>
+    </ion-content>    
+</ion-view>
+<script>
+    function searchKeyword(){
+        keyword = $('.search').val();        
+        loadOrderList(keyword);
+    }
+</script>
+

@@ -1,0 +1,62 @@
+<div class"app-header">
+    <div class="header-title">My Paycheck</div>
+    <div class="back" ng-click="myGoBack()">
+        <span class="ion-ios-arrow-left"></span>
+    </div>
+</div>
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>
+        <ul class="ii" id="paycheck">
+            
+            
+            <script>
+            /*
+            <li class="item item-complex">
+                <a class="item-content">
+                    <span>Salary</span>
+                    <span class="a">$ 120</span>
+                </a>
+            </li>
+            */
+            </script>            
+        </ul>
+        <div class="hr"></div>
+        <ul class="rt">
+            <li class="item item-complex">
+                <a class="item-content">
+                    <span>Total Paycheck</span>
+                    <span class="a">$ <span class="total_paycheck">120</span></span>
+                </a>
+            </li>
+            <li class="item item-complex">
+                <a class="item-content">
+                    <span>Paycheck Date</span>
+                    <span class="b"><span class="paycheck_date">20/12/2017</span></span>
+                </a>
+            </li>
+        </ul>
+        
+    </ion-content>
+</ion-view>
+<script>
+        $('#paycheck').html('');
+        var staff_id = localStorage.getItem('staff_id');
+        
+        $.post('http://nekoten.khmerqq.com/app/staff/paycheck.php', {staff_id:staff_id}, function(data){
+            var total_paycheck = 0;
+            var a = JSON.parse(data);
+            for (var i = 0; i < a.length; i++){
+                var b = a[i];
+                var str = '<li class="item item-complex">';
+                    str += '<a class="item-content">';
+                        str += '<span>'+b['item']+'</span>';
+                        str += '<span class="a">$ '+b['cost']+'</span>';
+                    str += '</a>';
+                str += '</li>';
+                total_paycheck += parseFloat(b['cost']);
+                $('#paycheck').append(str);
+            }
+            $('.total_paycheck').text(total_paycheck);
+        });
+    
+</script>

@@ -43,7 +43,14 @@ angular.module('starter.controllers', [])
         $scope.go = function ( path ) {
 	       $location.path( path );
         };
-        
+        $scope.refresh = function (page) {
+            if (page == 'order_list'){
+                loadOrderList('');
+            } else if (page == 'order'){
+                loadOrder('refresh');
+            }
+            $scope.$broadcast('scroll.refreshComplete');
+        }
         
 });
 

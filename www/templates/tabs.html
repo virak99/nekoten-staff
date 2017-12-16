@@ -1,16 +1,16 @@
-<!--
-Create tabs with an icon and label, using the tabs-positive style.
-Each tab's child <ion-nav-view> directive will have its own
-navigation history that also transitions its views in and out.
--->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
   <!-- Dashboard Tab -->
   <ion-tab title="Order" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/order">
     <ion-nav-view name="order"></ion-nav-view>
   </ion-tab>
-
-  <!-- Chats Tab -->
+  <ion-tab title="Search" icon-off="ion-ios-search" icon-on="ion-ios-search" href="#/tab/search">
+    <ion-nav-view name="search"></ion-nav-view>
+  </ion-tab>
+  
+  <ion-tab title="Seller" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/seller">
+    <ion-nav-view name="seller"></ion-nav-view>
+  </ion-tab>
+  
   <ion-tab title="Report" icon-off="ion-ios-copy-outline" icon-on="ion-ios-copy" href="#/tab/report">
     <ion-nav-view name="report"></ion-nav-view>
   </ion-tab>
@@ -19,6 +19,122 @@ navigation history that also transitions its views in and out.
   <ion-tab title="Account" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/account">
     <ion-nav-view name="account"></ion-nav-view>
   </ion-tab>
-
-
 </ion-tabs>
+
+<!-- Order Modal -->
+<div id="order_modal" class="modal">
+    <div class="header-title">Order #<span id="order_id"></span></div>
+    <div class="back">
+        <span ontouchstart="closeModal('order_modal')" class="close ion-ios-close-empty"></span>
+        <span ontouchstart="openActionMenu('order_action')" class="ion-ios-more-outline"></span>
+    </div>
+    <ion-content class="sm-modal-body">
+        <ion-refresher on-refresh="refresh('order')"></ion-refresher>
+        
+        <div id="order">
+            
+        </div>            
+    </ion-content>
+    <div class="modal-footer hj">
+        <span class="a">Today, 9:00 ~ 10:00</span>
+        <button>Bought from seller</button> 
+    </div>
+</div>
+<!-- /Order Modal -->
+
+
+<!-- Store Modal -->
+<div class="modal modal2" id="store_modal">
+    <div class="back">
+        <span class="close ion-ios-close-empty" onclick="closeModal('store_modal')"></span>
+    </div>
+    
+    <div class="no-tabs ion-content" id="product_page_content"> 
+        <div id="store" class="st">
+            <div class="a">
+                <img id="timeline_pic" src="img/default_timeline_pic.jpg">
+            </div>
+            <div class="b">
+                <div class="c">
+                    <img id="profile_pic" src="">
+                </div>
+                <div class="d">
+                    <div class="e" id="name"></div>
+                    <div class="f">
+                        <div class="g"><span id="n_product">0</span> <span class="h" k="ទំនិញ">Product</span></div>
+                        <div class="g"><span id="n_order">0</span> <span class="h" k="កម្មង់">Order</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="hr"></div>
+            <div class="kl">
+                <div class="a">
+                    <span class="b ion-ios-location"></span>
+                    <span class="c" onclick="openMap($(this).text())" id="address"></span>
+                </div>
+                <div class="a">
+                    <span class="b ion-ios-navigate"></span>
+                    <span class="c" onclick="openCoordinate($(this).text())" id="coordinate"></span>
+                </div>
+                <div class="a">
+                    <span class="b ion-social-facebook"></span>
+                    <a class="c" onclick="openUrl($(this).text())" id="facebook"></a>
+                </div>
+                <div class="a">
+                    <span class="b ion-ios-telephone"></span>
+                    <span class="c" id="phone_number"></span>
+                </div>
+            </div>
+            <div class="hr"></div>
+            <div class="ip">
+                <div class="new-arrival">
+                    <h3 k="ទំនិញក្នុងហាង">Product in this Store</h3>
+                </div>  
+                <div id="store_products">
+                                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Store Modal -->
+
+
+
+
+<!-- ms-alert -->
+<div class="ms-alert" id="alert">
+    <div class="ms-alert-body">
+        <div class="ms-alert-header"></div>            
+        <div class="ms-alert-buttons">                            
+            <div class="ms-alert-button confirm" onclick="$('.ms-alert').hide(); $('.tab-nav').show();" k="យល់ព្រម">OK</div>
+        </div>                        
+    </div>    
+</div>
+
+<!-- Action Menu -->
+<div class="ms-alert action-menu" id="order_action" onclick="closeActionMenu()">
+    <div class="ms-alert-body">
+        <div class="hh">
+            <li class="item item-complex" onclick="alert('hi')">
+                <a class="item-content">
+                    <span class="a ion-alert-circled"></span>
+                    <span class="b">Report Order</span>
+                </a>
+            </li>
+            <li class="item item-complex" style="color:red">
+                <a class="item-content">
+                    <span class="a ion-close-round"></span>
+                    <span class="b">Cancel Order</span>
+                </a>
+            </li>
+            <div class="aa"></div>
+            <li class="item item-complex" onclick="closeActionMenu()">
+                <a class="item-content">                
+                    <span class="b">Cancel</span>
+                </a>
+            </li>
+        </div>
+    </div>    
+</div>
+

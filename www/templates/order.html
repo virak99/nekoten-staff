@@ -1,108 +1,22 @@
-<!-- Order Modal -->
-<div id="order_modal" class="modal">
-    <div class="header-title">Order #28102017001</div>
-    <div class="back" onclick="closeModal('order_modal')">
-        <span class="close ion-ios-close-empty"></span>
-    </div>
-    <ion-content>
-        <div class="modal-body">
-            <div class="yt">                
-                <div class="a">
-                    <span class="ab">Seller:</span> <strong>Nealeka Shop</strong> (<span id="order">0 order</span>)
-                </div>
-                <div class="b">
-                    <span id="address">No. 40, St. 172, Phnom Penh</span> <a id="map">Get Direction</a>
-                </div>
-                <div class="bb">
-                    <span>Tel:</span> <span id="phone">011433828</span>
-                </div>
-                
-                <ul class="c">
-                    <li id="item-fhtv">
-                        <div class="d">
-                            <img src="img/1_m.jpg"/>
-                        </div>
-                        <div class="e">
-                            <div id="title">Phone 6s 32GB 4G/3G GSM Module</div>
-                            <div class="f">
-                                <strong id="price">$ 32</strong> x <strong id="qty">4</strong>
-                            </div>
-                            <div class="g">
-                                <span class="item-left">Item left</span>
-                                <span class="ion-ios-minus-empty" onclick="qtyMinus('fhtv')"></span>
-                                <input id="left_qty" value="3">
-                                <span class="ion-ios-plus-empty" onclick="qtyPlus('fhtv')"></span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li id="item-fhtv">
-                        <div class="d">
-                            <img src="img/1_m.jpg"/>
-                        </div>
-                        <div class="e">
-                            <div id="title">Phone 6s 32GB 4G/3G GSM Module</div>
-                            <div class="f">
-                                <strong id="price">$ 32</strong> x <strong id="qty">4</strong>
-                            </div>
-                            <div class="g">
-                                <span class="item-left">Item left</span>
-                                <span class="ion-ios-minus-empty" onclick="qtyMinus('fhtv')"></span>
-                                <input id="left_qty" value="3">
-                                <span class="ion-ios-plus-empty" onclick="qtyPlus('fhtv')"></span>
-                            </div>
-                        </div>
-                    </li> 
-                </ul>
-                <div class="h">
-                    <span>Total</span> <span>(3 items)</span><span class="total-price">$ 33</span>
-                </div>
-            </div>
-            <div class="hr"></div>
-            <div class="yr">
-                <div class="a">
-                    <span class="b">Buyer:</span> 
-                    <strong id="buyer">Vong Virak</strong> <span id="order">(0 Order)</span>                    
-                </div>
-                <div class="c">
-                    <span id="address">No. 78, Mao Tse Toung Blvd, Phnom Penh</span>
-                    <a>Get Direction</a>
-                </div>
-                <div class="cc">
-                    <span>Tel:</span> <span id="phone">011433828</span>
-                </div>
-                <div class="d">
-                    <div>
-                        <span class="e">Payment Method:</span> <strong>Cash on Delivery</strong>    
-                    </div>
-                    <div>
-                        <span class="e">Message:</span> <span>Don't call me, Message me instead!</span>    
-                    </div>                                    
-                </div>
-                <div class="h">
-                    <span>Total</span> <span>(3 items)</span><span class="total-price">$ 36</span>
-                </div>
-            </div>
-                                
-        </div>    
-    </ion-content>
-    <div class="modal-footer hj">
-        <span class="a">Today, 9:00 ~ 10:00</span>
-        <button>Bought from seller</button> 
-    </div>
-</div>
-<!-- /Order Modal -->
-    
-<div class"app-header">
+
+<div class="app-header">
     <div class="header-title">Order List</div>
 </div>
 
 <ion-view hide-nav-bar="true" class="header-view">
     <ion-content>  
-        <ul class="ol">
+        <ion-refresher on-refresh="refresh('order_list')"></ion-refresher>        
+        <div id="order_list">
+        
+        </div>
+        
+        
+        <script>/*
             <li class="item item-complex" onclick="openModal('order_modal')">
                 <a class="item-content">
                     <div class="c">
                         <span class="delivery_time">Today, 9:00 ~ 10:00</span>
+                        <span class="cc">#12</span>
                     </div>
                     <div class="a">                        
                         <span class="name">Nealeka</span>
@@ -124,18 +38,11 @@
                     <span class="ion-ios-arrow-right"></span>
                 </a>
             </li>
-        </ul>
+            */</script>
+        
     </ion-content>
 
 </ion-view>
 <script>      
-
-    function qtyMinus(id){        
-        if ($('#item-'+id+' #left_qty').val() > 0){
-            $('#item-'+id+' #left_qty').val(parseInt($('#item-'+id+' #left_qty').val(), 10) - 1);
-        }
-    }    
-    function qtyPlus(id){        
-        $('#item-'+id+' #left_qty').val(parseInt($('#item-'+id+' #left_qty').val(), 10) + 1);
-    }
+    loadOrderList('');
 </script>

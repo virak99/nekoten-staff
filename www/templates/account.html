@@ -23,6 +23,13 @@
                 <span class="ion-ios-arrow-right"></span>
             </a>
         </li>
+        <li class="item item-complex">
+            <a class="item-content" href="#tab/paycheck/">
+                <span>My Payback</span>
+                <span class="a">$ <span class="total_paycheck"></span></span>
+                <span class="ion-ios-arrow-right"></span>
+            </a>
+        </li>
     </ul>
     <div class="gt">
         <button class="btn" onclick="sign_out()">Sign Out</button>
@@ -39,4 +46,7 @@
         localStorage.removeKey('name_kh');
         openModal('sign_in_modal');
     }
+
+    $('.total_paycheck').text(localStorage.getItem('total_paycheck'));
+    
 </script>

@@ -49,6 +49,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.search', {
+    url: '/search',
+    views: {
+      'search': {
+        templateUrl: 'templates/search.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
+  .state('tab.seller', {
+    url: '/seller',
+    views: {
+      'seller': {
+        templateUrl: 'templates/seller.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
 
     .state('tab.report', {
     url: '/report',
@@ -65,6 +83,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'account': {
         templateUrl: 'templates/account.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
+  .state('tab.paycheck', {
+    url: '/paycheck/',
+    views: {
+      'account': {
+        templateUrl: 'templates/paycheck.html',
         controller: 'NavCtrl'
       }
     }

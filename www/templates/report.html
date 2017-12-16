@@ -42,7 +42,7 @@
 </ion-view>
 
 <script>    
-    openModal('report_modal');
+    //openModal2('report_modal');
     loadReportList();
     
     function submitReport(){
@@ -51,7 +51,7 @@
         var body = $('.tt #body').val();
         var title = $('.tt #title').val();
         
-        $.post('http://nekoten.khmerqq.com/staff/submit_report.php', 
+        $.post('http://nekoten.khmerqq.com/app/staff/submit_report.php', 
         {report_id:report_id, staff_id:staff_id, title:title, body:body}, function(data){
             if (data == 'success'){
                 alert('Report Saved.');
@@ -70,7 +70,7 @@
         $('#reports').html('');
         var staff_id = localStorage.getItem('staff_id');
         
-        $.post('http://nekoten.khmerqq.com/staff/report.php', {staff_id:staff_id}, function(data){
+        $.post('http://nekoten.khmerqq.com/app/staff/report.php', {staff_id:staff_id}, function(data){
             var a = JSON.parse(data);
             for (var i = 0; i < a.length; i++){
                 var b = a[i];
@@ -89,10 +89,10 @@
         $('.tt #report_id').val(id);
         $('.tt #title').val($('#report-'+id+' #title').text());
         $('.tt #body').val($('#report-'+id+' #body').text());
-        openModal('report_modal');  
+        openModal2('report_modal');  
     }
     function newReport(){
-        openModal('report_modal'); 
+        openModal2('report_modal'); 
         $('.tt #report_id').val(''); 
         $('.tt #title').val('');
         $('.tt #body').val('');        
