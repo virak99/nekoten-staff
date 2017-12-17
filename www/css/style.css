@@ -7,6 +7,12 @@
 .modal .sm-modal-body {
     margin-top: 60px;
 }
+.owl-carousel .r{
+    width: 100%;
+    height: 100px;
+    background: red;
+}
+
 .modal {    
     transform: translateY(100%);
     width: 100%;    
@@ -239,60 +245,64 @@ a {
 .header-view {
     margin-top: 65px;
 }
-.yt{
+.yw{
+    padding: 10px;
+}
+.yt {
     padding: 10px;
 }
 
-.yt .ab img{
+.yw .ab img{
     width: 50px;
     height: 50px;
 }
-.yt .a a{
+.yw .a a{
     margin-top: 10px; 
     margin-left: 10px;
     font-size: 16px;
     font-weight: bold;
 }
-.yt .a{
+.yw .a{
     display: inline-flex;
 }
-
-.yt .c li{
-    display: inline-flex;
-}
-.yt .d img{
-    width: 100px;
-}
-.yt .e{
-    margin-left: 10px;
-}
-.yt .b{
+.yw .b{
     border-bottom: 1px solid #eee;
     padding: 10px;
     color: grey;
 }
-.yt .ba{
+.yw .ba{
     margin-right: 15px;
 }
 
-.yt .f{
+
+.pd{
+    padding: 10px;
+    display: inline-flex;
+}
+.pd .a{
+    display: inline-flex;
+    width: 100%;
+}
+.pd .b{
+    width: 50%;
+}
+.pd .d{
+    width: 100px;
+}
+.pd .d img{
+    width: 100%;
+}
+.pd .c{
+    color: grey;
+}
+.pd .e{
+    margin-left: 10px;
+}
+.pd .f{
     margin-top: 10px;
     font-size: 16px;
 }
-
-.yt .g .ion-ios-plus-empty, .yt .g .ion-ios-minus-empty{
-    border: 1px solid #eee;
-    border-radius: 50%;
-    padding: 0 6px;
-    background: #eee;
-}
-.yt .g input{
-    width: 50px;
-    text-align: center;
-    border: none;
-    border-bottom: 1px solid #eee;
-}
-.yt #price{
+.pd #price{
     color: #ff3366;
     font-weight: bold;
 }
@@ -349,25 +359,28 @@ a {
 .yr .c a{
     float: right;
 }
-.yr .h .total-price{
+.ys{
+    padding: 10px;
+}
+.ys .h .total-price{
     font-size: 18px;     
     color: #ff3366;
 }
 .yr .h{
     padding: 0 10px;
 }
-.yr .d{
+.ys .d{
     margin-bottom: 20px;
 }
-.yr .i{    
+.ys .i{    
     font-weight: bold;
     float: right;
 }
-.yr .d{
+.ys .d{
     padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
-.yr .e{
+.ys .e{
     color: grey;
 }
 .modal-footer{
@@ -494,8 +507,12 @@ a {
     font-size: 16px;
 }
 .tb{
-    width: 100%;
+    overflow-x: scroll;
     display: inline-flex;
+    -webkit-overflow-scrolling: touch;
+}
+.tb-5 .a{
+    width: 90px;
 }
 .tb-4 .a{
     width: 25%;
@@ -511,7 +528,7 @@ a {
     text-align: center;
     border-bottom: 1px solid #eee;
     font-weight: bold;
-    font-stretch: 16px;
+    font-size: 16px;
     color: grey;
 }
 .tb .a.active{

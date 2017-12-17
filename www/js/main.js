@@ -75,6 +75,90 @@ function loadStore(store_id){
     
 }
 
+function storeItem(b){
+    var str = '<div class="yw">';
+        str += '<div class="a">';
+            str += '<div class="ab"><img src="'+url+'stores/'+b['store_id']+'/profile.jpg"></div> <a onclick="loadStore(\''+b['store_id']+'\');">'+b['store_name']+'</a>';
+        str += '</div>';
+        str += '<div class="b" onclick="openMap($(this).text())">';
+            str += '<span class="ba ion-ios-location"></span>';
+            str += '<span class="bb">'+b['address']+'</span>';                    
+        str += '</div>';
+        str += '<div class="b" onclick="openCoordinate($(this).text())">';
+            str += '<span class="ba ion-ios-navigate"></span>';
+            str += '<span class="bb">'+b['coordinate']+'</span>';                    
+        str += '</div>';
+        str += '<div class="b">';
+            str += '<span class="ba ion-ios-telephone"></span>';
+            str += '<span class="bb">'+b['phone_number']+'</span>';                    
+        str += '</div>';
+    str += '</div>';
+    return str;
+}
+
+
+
+function searchKeyword(){
+    keyword = $('.search').val(); 
+    opt = $('#search_opt').val();
+    
+    if (opt == 'order') {
+        loadOrderList(keyword);
+    } else {
+        $.post(url+'app/staff/search.php', {keyword:keyword, opt:opt}, function(data){
+            var a = JSON.parse(data);
+            
+            var str = '';
+            for (var i = 0; i < a.length; i++){
+                var b = a[i];
+                if (opt == 'store') {
+                    
+                    str += storeItem(b);
+                    str += '<div class="hr"></div>';
+                } else if (opt == 'user'){
+                    str += addressItem(b);
+                    str += '<div class="hr"></div>';
+                } else if (opt == 'product'){
+                    str += productItem(b);
+                    str += '<div class="hr"></div>';
+                }
+            }
+            
+            $('#search_res').html(str);
+        });
+    }
+    
+}
+
+
+function addressItem(a){
+    var str = '<div class="yr">';
+        str += '<div class="a">';
+            str += '<div class="ab"><img src="'+url+'users/'+a['user_id']+'/profile.jpg"></div>';
+            str += '<a onclick="loadUser(\''+a['ordered_by']+'\');">'+a['name']+'</a>';                
+        str += '</div>';
+        str += '<div class="b" onclick="openMap($(this).text())">';
+            str += '<span class="ba ion-ios-location"></span>';
+            str += '<span class="bb">'+a['address']+' '+a['location']+'</span>';                    
+        str += '</div>';
+        str += '<div class="b" onclick="openCoordinate($(this).text())">';
+            str += '<span class="ba ion-ios-navigate"></span>';
+            str += '<span class="bb">'+b['coordinate']+'</span>';                    
+        str += '</div>';
+        str += '<div class="b">';
+            str += '<span class="ba ion-ios-telephone"></span>';
+            str += '<span class="bb">'+a['phone_number']+'</span>';                    
+        str += '</div>';
+        if (a['bus_name'] != '' || a['bus_phone_number'] != '') {
+            str += '<div class="b">';
+                str += '<span class="ba ion-android-bus"></span>';
+                str += '<span class="bb">'+a['bus_name']+' '+a['bus_phone_number']+'</span>';                    
+            str += '</div>';
+        }
+    str += '</div>';
+    return str;
+}
+
 
 function loadOrder(order_id){
     if (order_id == 'refresh') order_id = $('#order_modal #order_id').text();
@@ -101,38 +185,13 @@ function loadOrder(order_id){
         str += '<div class="hr"></div>';
         for (var i = 0; i < a['stores'].length; i++) {
             var b = a['stores'][i];
+            str += storeItem(b);
             str += '<div class="yt">';           
-                str += '<div class="a">';
-                    str += '<div class="ab"><img src="'+url+'stores/'+b['store_id']+'/profile.jpg"></div> <a onclick="loadStore(\''+b['store_id']+'\');">'+b['store_name']+'</a>';
-                str += '</div>';
-                str += '<div class="b" onclick="openMap($(this).text())">';
-                    str += '<span class="ba ion-ios-location"></span>';
-                    str += '<span class="bb">'+b['address']+'</span>';                    
-                str += '</div>';
-                str += '<div class="b" onclick="openCoordinate($(this).text())">';
-                    str += '<span class="ba ion-ios-navigate"></span>';
-                    str += '<span class="bb">'+b['coordinate']+'</span>';                    
-                str += '</div>';
-                str += '<div class="b">';
-                    str += '<span class="ba ion-ios-telephone"></span>';
-                    str += '<span class="bb">'+b['phone_number']+'</span>';                    
-                str += '</div>';
-                
                 str += '<ul class="c">';
                     var str2 = '';
                     for (var j = 0; j < b['ads'].length; j++){
                         var c = b['ads'][j];
-                        str2 += '<li id="item-fhtv">';
-                            str2 += '<div class="d">';
-                                str2 += '<img src="'+url+'ads/'+c['ad_id']+'/1_m.jpg"/>';
-                            str2 += '</div>';
-                            str2 += '<div class="e">';
-                                str2 += '<div id="title">'+c['title']+'</div>';
-                                str2 += '<div class="f">';
-                                    str2 += '<strong id="price">$ '+c['buy_in']+'</strong> x <strong id="qty">'+c['unit_count']+'</strong>';
-                                str2 += '</div>';
-                            str2 += '</div>';
-                        str2 += '</li>';
+                        str2 += productItem(c);
                     }
                     str += str2;
                 str += '</ul>';
@@ -144,30 +203,8 @@ function loadOrder(order_id){
         }
         
         
-        str += '<div class="yr">';
-            str += '<div class="a">';
-                str += '<div class="ab"><img src="'+url+'users/'+a['user_id']+'/profile.jpg"></div>';
-                str += '<a onclick="loadUser(\''+a['ordered_by']+'\');">'+a['name']+'</a>';                
-            str += '</div>';
-            str += '<div class="b" onclick="openMap($(this).text())">';
-                str += '<span class="ba ion-ios-location"></span>';
-                str += '<span class="bb">'+a['address']+' '+a['location']+'</span>';                    
-            str += '</div>';
-            str += '<div class="b" onclick="openCoordinate($(this).text())">';
-                str += '<span class="ba ion-ios-navigate"></span>';
-                str += '<span class="bb">'+b['coordinate']+'</span>';                    
-            str += '</div>';
-            str += '<div class="b">';
-                str += '<span class="ba ion-ios-telephone"></span>';
-                str += '<span class="bb">'+a['phone_number']+'</span>';                    
-            str += '</div>';
-            if (a['bus_name'] != '' || a['bus_phone_number'] != '') {
-                str += '<div class="b">';
-                    str += '<span class="ba ion-android-bus"></span>';
-                    str += '<span class="bb">'+a['bus_name']+' '+a['bus_phone_number']+'</span>';                    
-                str += '</div>';
-            }
-                        
+        str += addressItem(a);
+        str += '<div class="ys">';                
             str += '<div class="d">';
                 str += '<div>';
                     str += '<span class="e">Payment Method:</span> <strong>';
@@ -196,6 +233,40 @@ function loadOrder(order_id){
     });
 }
 
+function productItem(c){
+    var str2 = '<li class="pd">';
+        str2 += '<div class="d">';
+            str2 += '<img src="'+url+'ads/'+c['ad_id']+'/1_m.jpg"/>';
+        str2 += '</div>';
+        str2 += '<div class="e">';
+            str2 += '<div id="title">'+c['title']+'</div>';
+            if (c['unit_count'] != null) {
+                str2 += '<div class="f">';
+                    str2 += '<strong id="price">$ '+c['buy_in']+'</strong> x <strong id="qty">'+c['unit_count']+'</strong>';
+                str2 += '</div>';
+            } else {
+                str2 += '<div class="a">';
+                    str2 += '<div class="b">';
+                        str2 += '<span class="c">Product ID: </span><span style="text-transform:uppercase">'+c['ad_id']+'</span>';
+                    str2 += '</div>';
+                    str2 += '<div class="b">';
+                        str2 += '<span class="c">Quantity: </span><span>'+c['quantity']+'</span>';
+                    str2 += '</div>';
+                str2 += '</div>';
+                str2 += '<div class="a">';
+                    str2 += '<div class="b">';
+                        str2 += '<span class="c">Buy In: </span><strong id="price">$ '+c['buy_in']+'</strong>';
+                    str2 += '</div>';
+                    str2 += '<div class="b">';
+                        str2 += '<span class="c">Sell Out: </span><strong id="price">$ '+c['price']+'</strong>';
+                    str2 += '</div>';
+                str2 += '</div>';
+                
+            }
+        str2 += '</div>';
+    str2 += '</li>';
+    return str2;
+}
 
 function signin(){
     var username = $('.uu #user_name').val();
@@ -216,66 +287,77 @@ function signin(){
 }
 
 function loadOrderList(keyword){        
-    
     $.post(url+'app/staff/order_list.php', {staff_id: staff_id, keyword:keyword}, function(data){     
         //alert(data);
         var a = JSON.parse(data);
         var str = '<ul class="ol">';
         for (var i = 0; i < a.length; i++){
             b = a[i];                
-            str += '<li class="item item-complex" onclick="loadOrder(\''+b['id']+'\')">';
-                str += '<a class="item-content">';
-                    str += '<div class="c">';
-                        str += '<span class="delivery_time">'+b['delivery_time']+'</span>';
-                        str += '<span class="cc">#'+b['id']+'</span>';
-                    str += '</div>';
-                    
-                    for (var j = 0; j < b['stores'].length; j++) {
-                        c = b['stores'][j];
-                        str += '<div class="a">';                        
-                            str += '<span class="name">'+c['store_name']+'</span> ';
-                            str += '<span class="address">'+c['address']+'</span>';                                                                            
-                        str += '</div>';
-                        str += '<div class="b">';
-                            str += '<span class="price">$ '+c['buy_in']+'</span> (<span class="item_count">'+c['unit_count']+'<span> items)';
-                            str += '<span class="distance">~2 km</span>';
-                        str += '</div>';
-                    }
-                    
-                    str += '<div class="ion-arrow-down-c"></div>';
-                    str += '<div class="a">';                        
-                        str += '<span class="name">'+b['name']+'</span> ';
-                        str += '<span class="address">'+b['address']+' '+b['location']+'</span>';
-                    str += '</div>';
-                    str += '<div class="b">';
-                        str += '<span class="price">$ '+b['total']+'</span> (<span class="item_count">'+b['item_count']+'<span> items)';
-                        str += '<span class="distance">~1.1 km</span>';
-                    str += '</div>';
-                    str += '<span class="ion-ios-arrow-right"></span>';
-                str += '</a>';
-            str += '</li>';
-            
+            str += orderItem(b);
         }
         str += '<ul>';
+        //alert(keyword);
         if (keyword == '') {
             $('#order_list').html(str);
         } else {
+            
             $('#search_res').html(str);
         }
     }); 
 }
 
-
+function orderItem(b){
+    var str = '<li class="item item-complex" onclick="loadOrder(\''+b['id']+'\')">';
+        str += '<a class="item-content">';
+            str += '<div class="c">';
+                str += '<span class="delivery_time">'+b['delivery_time']+'</span>';
+                str += '<span class="cc">#'+b['id']+'</span>';
+            str += '</div>';
+            
+            for (var j = 0; j < b['stores'].length; j++) {
+                c = b['stores'][j];
+                str += '<div class="a">';                        
+                    str += '<span class="name">'+c['store_name']+'</span> ';
+                    str += '<span class="address">'+c['address']+'</span>';                                                                            
+                str += '</div>';
+                str += '<div class="b">';
+                    str += '<span class="price">$ '+c['buy_in']+'</span> (<span class="item_count">'+c['unit_count']+'<span> items)';
+                    str += '<span class="distance">~2 km</span>';
+                str += '</div>';
+            }
+            
+            str += '<div class="ion-arrow-down-c"></div>';
+            str += '<div class="a">';                        
+                str += '<span class="name">'+b['name']+'</span> ';
+                str += '<span class="address">'+b['address']+' '+b['location']+'</span>';
+            str += '</div>';
+            str += '<div class="b">';
+                str += '<span class="price">$ '+b['total']+'</span> (<span class="item_count">'+b['item_count']+'<span> items)';
+                str += '<span class="distance">~1.1 km</span>';
+            str += '</div>';
+            str += '<span class="ion-ios-arrow-right"></span>';
+        str += '</a>';
+    str += '</li>';
+    return str;
+}
 
 function closeSmallModal(page){        
     $('#'+page).css('transform', 'translateY(100%)');    
 }
-
+function cancelClick(){
+    $('.button-clear').hide(); 
+    $('.search').val('');
+    $('.search').prop('disabled', true);
+    setTimeout(function(){
+        $('.search').prop('disabled', false);
+    }, 500);
+}
 function openModal(page){
     $('#'+page).height($(window).height());        
     $('#'+page).css('transform', 'translateY(0)');
     $('.header-view').hide();        
-    $('.tab-nav').hide();        
+    $('.tab-nav').hide();    
+    $('.search').prop('disabled', true);
     //StatusBar.hide();
 }
 function openModal2(page){
@@ -289,6 +371,9 @@ function closeModal(page){
     $('#'+page).css('transform', 'translateY(100%)');    
     $('.header-view').show();        
     $('.tab-nav').show();
+    setTimeout(function(){
+        $('.search').prop('disabled', false);
+    }, 500);
 }
 
 

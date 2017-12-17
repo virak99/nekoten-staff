@@ -2,47 +2,69 @@
     <form class="bar bar-header item-input-inset" onsubmit="searchKeyword()">
         <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input class="search" type="search" placeholder="Search Name, ID, Address, Phone Number" ontouchstart="$('.button-clear').show();">
+            <input class="search" type="search" placeholder="Search Name, ID, Address, Phone Number" onclick="$('.button-clear').show();">
         </label>
-        <button class="button button-clear hide" ontouchstart="$(this).hide(); $('.search').val('')">
+        <span class="button button-clear hide" onclick="cancelClick()">
             Cancel
-        </button>
+        </span>
     </form>
 </div>
 
+
 <ion-view hide-nav-bar="true" class="header-view">
-    <ion-content>
-        <div class="tb tb-4">            
-            <div class="a active">            
-                <span class="c">Order</span>
-            </div>
-            <div class="a">            
-                <span class="c">Store</span>
-            </div>
-            <div class="a">            
-                <span class="c">Product</span>
-            </div>
-            <div class="a">            
-                <span class="c">User</span>
-            </div>        
+    <div class="owl-carousel owl-theme hide">
+        <div class="r">1</div>
+        <div class="r">2</div>
+        <div class="r">3</div>
+        
+    </div>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            
+            margin:10,
+            responsive:{
+                0:{
+                    items:1
+                }
+            }
+        });
+    </script>
+    <div class="tb tb-5">            
+        <div class="a active" opt="order">            
+            <span class="c">Order</span>
         </div>
-        <script>    
-            $('.tb .a').on('touchstart', function(){                    
-                $('.tb .a').removeClass('active');
-                $(this).addClass('active');
-            });               
-            //var url= 'http://nekoten.sangskrit.com/';    
-            //cordova.InAppBrowser.open(url,'_blank','location=yes');    
-        </script>
+        <div class="a" opt="store">            
+            <span class="c">Store</span>
+        </div>
+        <div class="a" opt="product">            
+            <span class="c">Product</span>
+        </div>
+        <div class="a" opt="address">            
+            <span class="c">Address</span>
+        </div>
+        <div class="a" opt="user">            
+            <span class="c">User</span>
+        </div>       
+        <input type="hidden" id="search_opt" value="order">
+    </div>
+    <script>   
+        
+        $('.tb .a').on('click', function(){                    
+            $('.tb .a').removeClass('active');
+            $(this).addClass('active');
+            $('#search_opt').val($(this).attr('opt'));
+            if ($('.search').val() != '') {
+                searchKeyword();
+            }
+        });               
+        //var url= 'http://nekoten.sangskrit.com/';    
+        //cordova.InAppBrowser.open(url,'_blank','location=yes');    
+    </script>
+    <ion-content style="margin-top:42px">
+        
         <div class="it" id="search_res">
             
         </div>
     </ion-content>    
 </ion-view>
-<script>
-    function searchKeyword(){
-        keyword = $('.search').val();        
-        loadOrderList(keyword);
-    }
-</script>
 
