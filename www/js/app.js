@@ -49,6 +49,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  .state('tab.gas_ticket', {
+    url: '/gas_ticket',
+    views: {
+      'action': {
+        templateUrl: 'templates/gas_ticket.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
   .state('tab.search', {
     url: '/search',
     views: {
@@ -57,22 +66,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'NavCtrl'
       }
     }
-  })
-  .state('tab.seller', {
-    url: '/seller',
+  })  
+  .state('tab.action', {
+    url: '/action',
     views: {
-      'seller': {
-        templateUrl: 'templates/seller.html',
+      'action': {
+        templateUrl: 'templates/action.html',
         controller: 'NavCtrl'
       }
     }
   })
-
-    .state('tab.report', {
+  .state('tab.report', {
     url: '/report',
     views: {
-      'report': {
+      'action': {
         templateUrl: 'templates/report.html',
+        controller: 'NavCtrl'
+      }
+    }
+  })
+  .state('tab.store', {
+    url: '/store',
+    views: {
+      'action': {
+        templateUrl: 'templates/store.html',
         controller: 'NavCtrl'
       }
     }
@@ -88,7 +105,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
   .state('tab.paycheck', {
-    url: '/paycheck/',
+    url: '/paycheck',
     views: {
       'account': {
         templateUrl: 'templates/paycheck.html',

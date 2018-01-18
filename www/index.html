@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta name="format-detection" content="telephone=no">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -37,6 +38,10 @@
       </ion-nav-back-button>
     </ion-nav-bar>
     
+    
+    <!-- Hide Keyboard -->
+    <input id="hide_keyboard">
+    
     <!-- Sign In Modal -->
     <div id="sign_in_modal" class="sign-in" style="display:none">
         <div class="header-title">Sign in</div>
@@ -60,5 +65,7 @@
     
     
     <ion-nav-view></ion-nav-view>
+    
+    
   </body>
 </html>

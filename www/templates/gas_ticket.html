@@ -1,0 +1,86 @@
+<div class"app-header">
+    <div class="header-title">Gas Ticket</div>
+    <div class="back" ng-click="myGoBack()">
+        <span class="ion-ios-arrow-left"></span>
+    </div>
+    <div onclick="openGasTicket('start')">
+        <span class="compose ion-ios-plus-empty"></span>
+    </div>
+</div>
+
+<ion-view hide-nav-bar="true" class="header-view">
+    <ion-content>  
+    <ion-refresher on-refresh="refresh('gas_ticket')"></ion-refresher>        
+        <ul class="uf" id="gas_tickets">
+            
+        </ul>
+        
+    </ion-content>
+</ion-view>
+<script>
+    loadGasTicket();
+    function loadGasTicket(){
+        $.post(url+'app/gas_tickets.php', {staff_id:staff_id}, function(data){
+            var a = JSON.parse(data);
+            var str = '';
+            for (i = 0; i < a.length; i++){  
+                var b = a[i];
+                str += '<li class="item item-complex">';
+                    str += '<a class="item-content">';
+                        str += '<div class="c">';
+                            str += '<div class="b">';
+                                str += '<div class="g">';
+                                    str += b['description'];
+                                str += '</div>';
+                                str += '<div class="h">';
+                                    str += b['date'];
+                                str += '</div>';
+                            str += '</div>';
+                            
+                            str += '<div class="a">';
+                                str += '<span class="aa">';
+                                    str += 'Start: ';
+                                str += '</span>';                
+                                str += '<span class="ab">';
+                                    str += b['start_time'];
+                                str += '</span>';
+                            str += '</div>';
+                            
+                            
+                            
+                            if (b['distance'] != '0'){
+                                
+                                str += '<div class="a">';
+                                    str += '<span class="aa">';
+                                        str += 'End: ';
+                                    str += '</span>';                
+                                    str += '<span class="ab">';
+                                        str += b['end_time'];
+                                    str += '</span>';
+                                str += '</div>';
+                                
+                                str += '<div class="a">';
+                                    str += '<span class="aa">';
+                                        str += 'Distance: ';
+                                    str += '</span>';                
+                                    str += '<span class="ac">';
+                                        str += b['distance']+'km';
+                                    str += '</span>';
+                                str += '</div>';
+                            } else {
+                                str += '<div class="a">';
+                                    str += '<button class="ae btn" onclick="openGasTicket(\'end\')">End Ticket</button>';
+                                str += '</div>';
+                            }
+                            
+                            
+                        str += '</div>';
+                    str += '</a>';
+                str += '</li>';
+                $('#gas_tickets').html(str);
+            }
+        }); 
+    }
+    
+    
+</script>

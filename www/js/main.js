@@ -10,6 +10,8 @@ localStorage.setItem('name_en', 'Vong Virak');
 localStorage.setItem('name_kh', 'kk');
 localStorage.setItem('total_paycheck', '150');
 
+
+
 function openUrl(url){
     window.open(url, '_system', 'location=no');        
 }
@@ -23,6 +25,7 @@ function call(number) {
     cordova.InAppBrowser.open(url);    
 }
 
+
 function openMap(query){
     var url = 'comgooglemaps://?q='+query;
     cordova.InAppBrowser.open(url);
@@ -31,6 +34,52 @@ function openMap(query){
 function openCoordinate(coordinate){
     var url = 'comgooglemaps://?q='+coordinate+'&center='+coordinate;
     cordova.InAppBrowser.open(url);
+}
+
+
+
+function openGasTicket(type){
+    openModal('gas_ticket_modal');    
+    
+    if (type == 'start'){
+        $('#gas_ticket_modal #end_input').hide();            
+        navigator.geolocation.getCurrentPosition(function(pos){
+            var lat = pos.coords.latitude;
+            var long = pos.coords.longitude;
+            $('#gas_ticket_modal #start').val(lat+', '+long);
+        });    
+        $('#gas_ticket_modal #gas_ticket_btn').text('Start Gas Ticket');
+        $('#gas_ticket_modal #gas_ticket_btn').on('click', function(){
+            postGasTicket('start');    
+        });    
+    } else {
+        $('#gas_ticket_modal #end_input').show();        
+        navigator.geolocation.getCurrentPosition(function(pos){
+            var lat = pos.coords.latitude;
+            var long = pos.coords.longitude;
+            $('#gas_ticket_modal #end').val(lat+', '+long);
+        });    
+        $('#gas_ticket_modal #gas_ticket_btn').text('End Gas Ticket');
+        $('#gas_ticket_modal #gas_ticket_btn').on('click', function(){
+            postGasTicket('end');    
+        });
+    }
+    
+    $.post('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=Washington,DC&destinations=New+York+City,NY&key='+google_map_api,{}, function(data){            
+        var distance = data['rows'][0]['elements'][0]['distance']['value'];
+        
+    });
+
+}
+
+
+function postGasTicket(){
+    var start = $('#gas_ticket_modal #start').val();
+    var description = $('#gas_ticket_modal #description').val();
+    
+    $.post(url+'app/post_gas_ticket.php', {staff_id:staff_id, start:start, description:description, type:'start'}, function(data){
+        alert(data);
+    });
 }
 
 function loadStore(store_id){
@@ -75,6 +124,8 @@ function loadStore(store_id){
     
 }
 
+
+
 function storeItem(b){
     var str = '<div class="yw">';
         str += '<div class="a">';
@@ -90,7 +141,12 @@ function storeItem(b){
         str += '</div>';
         str += '<div class="b">';
             str += '<span class="ba ion-ios-telephone"></span>';
-            str += '<span class="bb">'+b['phone_number']+'</span>';                    
+            var tel = b['phone_number'].split(',');
+            for (var i = 0; i < tel.length; i++){
+                str += '<span class="bb" onclick="call(\''+tel[i]+'\')">'+tel[i]+'</span>';
+                if (i < (tel.length-1)) str += ' , ';
+            }
+                                
         str += '</div>';
     str += '</div>';
     return str;
@@ -102,6 +158,8 @@ function searchKeyword(){
     keyword = $('.search').val(); 
     opt = $('#search_opt').val();
     
+    $('#hide_keyboard').focus();
+    
     if (opt == 'order') {
         loadOrderList(keyword);
     } else {
@@ -112,10 +170,9 @@ function searchKeyword(){
             for (var i = 0; i < a.length; i++){
                 var b = a[i];
                 if (opt == 'store') {
-                    
                     str += storeItem(b);
                     str += '<div class="hr"></div>';
-                } else if (opt == 'user'){
+                } else if (opt == 'address'){
                     str += addressItem(b);
                     str += '<div class="hr"></div>';
                 } else if (opt == 'product'){
@@ -135,16 +192,18 @@ function addressItem(a){
     var str = '<div class="yr">';
         str += '<div class="a">';
             str += '<div class="ab"><img src="'+url+'users/'+a['user_id']+'/profile.jpg"></div>';
-            str += '<a onclick="loadUser(\''+a['ordered_by']+'\');">'+a['name']+'</a>';                
+            str += '<a onclick="loadUser(\''+a['user_id']+'\');">'+a['name']+'</a>';                
         str += '</div>';
         str += '<div class="b" onclick="openMap($(this).text())">';
             str += '<span class="ba ion-ios-location"></span>';
             str += '<span class="bb">'+a['address']+' '+a['location']+'</span>';                    
         str += '</div>';
-        str += '<div class="b" onclick="openCoordinate($(this).text())">';
-            str += '<span class="ba ion-ios-navigate"></span>';
-            str += '<span class="bb">'+b['coordinate']+'</span>';                    
-        str += '</div>';
+        if (a['coordinate'] != null) {
+            str += '<div class="b" onclick="openCoordinate($(this).text())">';
+                str += '<span class="ba ion-ios-navigate"></span>';
+                str += '<span class="bb">'+a['coordinate']+'</span>';                    
+            str += '</div>';
+        }
         str += '<div class="b">';
             str += '<span class="ba ion-ios-telephone"></span>';
             str += '<span class="bb">'+a['phone_number']+'</span>';                    
@@ -161,9 +220,12 @@ function addressItem(a){
 
 
 function loadOrder(order_id){
-    if (order_id == 'refresh') order_id = $('#order_modal #order_id').text();
-    $('#order_modal #order_id').text(order_id);
-    openModal('order_modal');
+    if (order_id == 'refresh') {
+        order_id = $('#order_modal #order_id').text();
+    } else {
+        openModal('order_modal');
+        $('#order_modal #order_id').text(order_id);
+    }
     $.post(url+'app/staff/order.php', {order_id: order_id}, function(data){
         //alert(data);
         var a = JSON.parse(data)[0];        
@@ -229,7 +291,7 @@ function loadOrder(order_id){
                 str += '<span>Total</span><span class="i total-price">$ '+a['total']+'</span>';
             str += '</div>';
         str += '</div>';
-        $('#order').html(str);
+        $('#order_modal #order').html(str);
     });
 }
 

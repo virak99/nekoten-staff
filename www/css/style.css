@@ -126,6 +126,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated{
     height: 30px;
     border-radius: inherit;
 }
+
 .ol .name{
     font-weight: bold;
 }
@@ -169,6 +170,13 @@ a {
     font-size: 20px;
     position: absolute;
     right: 15px;
+}
+.eq .b{
+    font-size: 1.4em;
+    margin-right: 10px;
+}
+.eq .c{
+    font-size: 16px;
 }
 #reports .ion-ios-arrow-right{
     font-size: 20px;
@@ -436,7 +444,7 @@ a {
     float: right;
 }
 .action-menu{
-    align-items: flex-end;          
+    align-items: flex-end !important;          
 }
 .action-menu .ms-alert-body{
     width: 100%;
@@ -506,24 +514,24 @@ a {
 .kl .c{
     font-size: 16px;
 }
+
 .tb{
-    overflow-x: scroll;
-    display: inline-flex;
-    -webkit-overflow-scrolling: touch;
+    overflow: scroll;
+    white-space: nowrap;
 }
-.tb-5 .a{
-    width: 90px;
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
 }
-.tb-4 .a{
-    width: 25%;
-}
-.tb-3 .a{
-    width: 33%;
+ion-content .scroll{
+    padding-bottom: 100px;
 }
 .tb-2 .a{
-    width: 50%;
+    width: 50% !important;
 }
 .tb .a{
+    width: 80px;
+    display: inline-block;
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #eee;
@@ -532,6 +540,39 @@ a {
     color: grey;
 }
 .tb .a.active{
-    border-bottom: 2px solid #ff3366;    
+    border-bottom: 3px solid #ff3366;    
     color: #ff3366;
+}
+#hide_keyboard{
+    width: 1px;
+    height: 1px;
+    position: fixed;
+    top: 0;
+    border: none;
+}
+.uf .b{
+    width: 100%;
+    display: inline-flex;
+}
+.uf .g{
+    color: limegreen;    
+    width: 90%;
+}
+.uf .h{
+    width: 10%;
+    color: #aaa;    
+}
+.uf .aa{
+    color: #aaa;
+}
+.uf .ac{
+    color: red;
+    font-weight: bold;
+}
+.uf .item-content{
+    padding: 15px !important;   
+}
+.pd{
+    width: 100%;
+    padding-left: 15px;
 }

@@ -29,7 +29,7 @@
             }
         });
     </script>
-    <div class="tb tb-5">            
+    <div class="tb" id="search_tab">            
         <div class="a active" opt="order">            
             <span class="c">Order</span>
         </div>
@@ -49,9 +49,9 @@
     </div>
     <script>   
         
-        $('.tb .a').on('click', function(){                    
-            $('.tb .a').removeClass('active');
-            $(this).addClass('active');
+        $('#search_tab .a').on('click', function(){                    
+            $('#search_tab .a').removeClass('active');
+            $(this).addClass('active');                                     
             $('#search_opt').val($(this).attr('opt'));
             if ($('.search').val() != '') {
                 searchKeyword();

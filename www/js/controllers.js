@@ -48,6 +48,8 @@ angular.module('starter.controllers', [])
                 loadOrderList('');
             } else if (page == 'order'){
                 loadOrder('refresh');
+            } else if (page == 'gas_ticket'){
+                loadGasTicket();
             }
             $scope.$broadcast('scroll.refreshComplete');
         }

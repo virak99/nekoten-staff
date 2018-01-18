@@ -5,14 +5,9 @@
   </ion-tab>
   <ion-tab title="Search" icon-off="ion-ios-search" icon-on="ion-ios-search" href="#/tab/search">
     <ion-nav-view name="search"></ion-nav-view>
-  </ion-tab>
-  
-  <ion-tab title="Seller" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/seller">
-    <ion-nav-view name="seller"></ion-nav-view>
-  </ion-tab>
-  
-  <ion-tab title="Report" icon-off="ion-ios-copy-outline" icon-on="ion-ios-copy" href="#/tab/report">
-    <ion-nav-view name="report"></ion-nav-view>
+  </ion-tab>  
+  <ion-tab title="Action" icon-off="ion-ios-toggle-outline" icon-on="ion-ios-toggle" href="#/tab/action">
+    <ion-nav-view name="action"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->
@@ -42,9 +37,40 @@
 </div>
 <!-- /Order Modal -->
 
+<!-- Gas Ticket Modal -->
+<div id="gas_ticket_modal" class="modal">
+    <div class="header-title">Create New Gas Ticket</span></div>
+    <div class="back">
+        <span onclick="closeModal('gas_ticket_modal')" class="close ion-ios-close-empty"></span>        
+    </div>
+    <ion-content class="sm-modal-body">        
+        
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Description</span>
+                <input type="text" id="description" placeholder="Ex: Buy Power Bank">
+            </label>                    
+            <label class="item item-input item-stacked-label" id="start_input">
+                <span class="input-label">Start Coordinate</span>
+                <input type="text" id="start">
+            </label>            
+            <label class="item item-input item-stacked-label" id="end_input">
+                <span class="input-label">Start Coordinate</span>
+                <input type="text" id="start">
+            </label>  
+        </div>            
+             
+        <div class="pd">
+            <button id="gas_ticket_btn" class="btn">Create</button>
+        </div>
+        
+    </ion-content>    
+</div>
+<!-- /Gas Ticket Modal -->
+
 
 <!-- Store Modal -->
-<div class="modal modal2" id="store_modal">
+<div class="modal" id="store_modal">
     <div class="back">
         <span class="close ion-ios-close-empty" onclick="closeModal('store_modal')"></span>
     </div>
@@ -67,7 +93,23 @@
                 </div>
             </div>
             <div class="hr"></div>
-            <div class="kl">
+            <div class="tb tb-2" id="store_tab" style="margin-bottom:20px">
+                <div class="a active" opt="info">            
+                    <span class="c">Info</span>
+                </div>
+                <div class="a" opt="product">            
+                    <span class="c">Product</span>
+                </div>
+            </div>
+            <script>
+                $('#store_tab .a').on('click', function(){                    
+                    $('#store_tab .a').removeClass('active');
+                    $(this).addClass('active');                    
+                    $('.tab-content').hide();
+                    $('#tab_'+$(this).attr('opt')).show();
+                });    
+            </script>
+            <div class="kl tab-content" id="tab_info">
                 <div class="a">
                     <span class="b ion-ios-location"></span>
                     <span class="c" onclick="openMap($(this).text())" id="address"></span>
@@ -84,9 +126,13 @@
                     <span class="b ion-ios-telephone"></span>
                     <span class="c" id="phone_number"></span>
                 </div>
+                
+                <button class="btn">Edit Shop Info</button>    
+                
+                
             </div>
-            <div class="hr"></div>
-            <div class="ip">
+            
+            <div class="ip tab-content hide" id="tab_product">
                 <div class="new-arrival">
                     <h3 k="ទំនិញក្នុងហាង">Product in this Store</h3>
                 </div>  
@@ -116,7 +162,7 @@
 <div class="ms-alert action-menu" id="order_action" onclick="closeActionMenu()">
     <div class="ms-alert-body">
         <div class="hh">
-            <li class="item item-complex" onclick="alert('hi')">
+            <li class="item item-complex">
                 <a class="item-content">
                     <span class="a ion-alert-circled"></span>
                     <span class="b">Report Order</span>
@@ -131,10 +177,38 @@
             <div class="aa"></div>
             <li class="item item-complex" onclick="closeActionMenu()">
                 <a class="item-content">                
-                    <span class="b">Cancel</span>
+                    <strong class="b">Cancel</strong>
                 </a>
             </li>
         </div>
     </div>    
 </div>
+
+
+<!-- Action Menu -->
+<div class="ms-alert action-menu" id="gas_ticket_action" onclick="closeActionMenu()">
+    <div class="ms-alert-body">
+        <div class="hh">
+            <li class="item item-complex" style="color:red">
+                <a class="item-content">
+                    <span class="a ion-alert-circled"></span>
+                    <span class="b">New Gas Ticket</span>
+                </a>
+            </li>
+            <li class="item item-complex">
+                <a class="item-content">
+                    <span class="a ion-close-round"></span>
+                    <span class="b">Open Google Map</span>
+                </a>
+            </li>
+            <div class="aa"></div>
+            <li class="item item-complex" onclick="closeActionMenu()">
+                <a class="item-content">                
+                    <strong class="b">Cancel</strong>
+                </a>
+            </li>
+        </div>
+    </div>    
+</div>
+
 
